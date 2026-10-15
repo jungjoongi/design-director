@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+
+# Node
+node_modules/
+
+# 테스트·평가 임시 산출물
+tests/.tmp/
+evals/.runs/
+# claude plugin eval 결과(aggregate-result.json·report.html). 기본 위치는 <eval dir>/results/
+evals/cases/**/results/
+
+# 이 저장소에서 플러그인을 직접 써 볼 때 생기는 산출물.
+# 타사 사이트 스크린샷은 저장소에 들어오지 않는다.
+.design/
+
+# Claude Code 로컬 설정
+.claude/settings.local.json

@@ -1,0 +1,7 @@
+# Windows 기본값인 core.autocrlf=true 환경에서도 LF 로 받게 고정한다.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.woff2 binary

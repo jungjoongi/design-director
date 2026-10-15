@@ -1,0 +1,15 @@
+{
+  "name": "design-director-repo",
+  "private": true,
+  "type": "module",
+  "description": "design-director Claude Code 플러그인 개발 저장소 (플러그인 본체는 plugins/design-director)",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test \"tests/**/*.test.mjs\"",
+    "test:unit": "node --test \"tests/unit/**/*.test.mjs\"",
+    "test:integration": "node --test \"tests/integration/**/*.test.mjs\"",
+    "validate": "claude plugin validate . && claude plugin validate plugins/design-director"
+  }
+}

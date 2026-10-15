@@ -1,0 +1,22 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # GitHub 호스티드 러너에는 Chrome 이 깔려 있어 통합 테스트도 돈다.
+      # 브라우저가 없는 환경에서는 통합 테스트가 스스로 skip 한다.
+      - run: npm test
