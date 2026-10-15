@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>relay — 다크 테크</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#0D0F14; --s1:#13161D; --s2:#1A1E27; --s3:#222733;
+  --line:rgb(255 255 255 / .08); --line-2:rgb(255 255 255 / .12);
+  --t1:rgb(255 255 255 / .92); --t2:rgb(255 255 255 / .74); --t3:rgb(255 255 255 / .58);
+  --accent:#6B8CFF; --accent-ink:#0B1230; --ok:#4CC38A; --warn:#F2B35B;
+  --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html:lang(ko){word-break:keep-all;overflow-wrap:break-word}
+body{font-family:var(--sans);background:var(--bg);color:var(--t2);font-size:16px;line-height:1.65;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(rgb(255 255 255 / .045) 1px,transparent 1px);background-size:24px 24px}
+h1,h2{text-wrap:balance;color:var(--t1)}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+code,.mono{font-family:var(--mono);letter-spacing:0}
+
+.nav{border-bottom:1px solid var(--line);background:var(--bg)}
+.nav .wrap{display:flex;align-items:center;height:64px;gap:40px}
+.logo{display:flex;align-items:center;gap:10px;color:var(--t1);font-weight:600;font-size:17px;letter-spacing:-.02em}
+.nav ul{display:flex;gap:28px;list-style:none;font-size:14px}
+.nav .end{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:14px}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:8px;font-weight:500;transition:background-color .2s var(--ease),border-color .2s var(--ease)}
+.btn-sm{padding:7px 14px;background:var(--t1);color:var(--bg)}
+.btn-main{padding:12px 20px;font-size:15px;background:var(--accent);color:var(--accent-ink);font-weight:600;box-shadow:inset 0 1px 0 rgb(255 255 255 / .3)}
+.btn-main:hover{background:#829DFF}
+.btn-line{padding:12px 20px;font-size:15px;border:1px solid var(--line-2);color:var(--t1)}
+
+.hero{display:grid;grid-template-columns:1fr 600px;gap:56px;align-items:center;padding:80px 32px 72px}
+.hero h1{font-size:60px;line-height:1.16;font-weight:560;letter-spacing:-.025em;margin-bottom:22px}
+.hero p{font-size:18px;max-width:27em;margin-bottom:32px}
+.row{display:flex;gap:12px;margin-bottom:28px}
+.install{display:inline-flex;align-items:center;gap:14px;padding:10px 14px;border:1px solid var(--line);border-radius:8px;background:var(--s1);font-size:14px;color:var(--t2)}
+.install b{color:var(--t3);font-weight:400}
+
+.term{position:relative;isolation:isolate}
+.term::before{content:"";position:absolute;inset:-150px -110px;z-index:-1;background:radial-gradient(closest-side,rgb(107 140 255 / .3),rgb(107 140 255 / .12) 60%,rgb(107 140 255 / 0))}
+.win{border:1px solid var(--line-2);border-radius:12px;background:var(--s1);box-shadow:inset 0 1px 0 rgb(255 255 255 / .06);overflow:hidden}
+.bar{display:flex;align-items:center;gap:8px;height:40px;padding:0 14px;border-bottom:1px solid var(--line);background:var(--s2);font-size:12px;color:var(--t3)}
+.bar i{width:10px;height:10px;border-radius:50%;background:var(--s3)}
+.bar span{margin-left:8px}
+.out{padding:18px 20px 22px;font-size:13.5px;line-height:1.85;color:var(--t2);white-space:pre}
+.out .c{color:var(--t1)} .out .d{color:var(--t3)} .out .g{color:var(--ok)} .out .w{color:var(--warn)} .out .a{color:var(--accent)}
+
+.logs h2{font-size:28px;line-height:1.3;font-weight:560;letter-spacing:-.02em;margin-bottom:8px}
+.logs .sub{color:var(--t2);margin-bottom:24px}
+.panel{border:1px solid var(--line-2);border-radius:12px;background:var(--s1);overflow:hidden}
+.ptop{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line);font-size:13px}
+.ptop .f{padding:4px 10px;border-radius:6px;border:1px solid var(--line);color:var(--t2)}
+.ptop .f.on{background:var(--s3);color:var(--t1)}
+.ptop .live{margin-left:auto;display:flex;align-items:center;gap:8px;color:var(--t3)}
+.ptop .live i{width:6px;height:6px;border-radius:50%;background:var(--ok)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{font-weight:500;color:var(--t3);text-align:left;padding:10px 16px;border-bottom:1px solid var(--line);background:var(--bg)}
+td{padding:11px 16px;border-bottom:1px solid var(--line);color:var(--t2);font-variant-numeric:tabular-nums}
+td.p{color:var(--t1)}
+.st{display:inline-block;padding:1px 8px;border-radius:999px;font-size:12px;font-weight:600}
+.st.ok{background:rgb(76 195 138 / .14);color:var(--ok)} .st.w{background:rgb(242 179 91 / .14);color:var(--warn)}
+@media (prefers-reduced-motion:reduce){.btn{transition:none}}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap">
+  <a class="logo" href="#"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="4" cy="10" r="2.5" stroke="#6B8CFF" stroke-width="1.5"/><circle cx="16" cy="4" r="2.5" stroke="rgb(255 255 255 / .92)" stroke-width="1.5"/><circle cx="16" cy="16" r="2.5" stroke="rgb(255 255 255 / .92)" stroke-width="1.5"/><path d="M6.3 9l7.4-4M6.3 11l7.4 4" stroke="rgb(255 255 255 / .58)" stroke-width="1.5"/></svg>relay</a>
+  <ul><li><a href="#">제품</a></li><li><a href="#">문서</a></li><li><a href="#">CLI</a></li><li><a href="#">요금</a></li><li><a href="#">변경 기록</a></li></ul>
+  <div class="end"><a href="#">로그인</a><a class="btn btn-sm" href="#">대시보드</a></div>
+</div></header>
+
+<main>
+<section class="wrap hero">
+  <div>
+    <h1>웹훅이 실패해도<br>요청은 남아요</h1>
+    <p>relay는 들어온 웹훅을 큐에 쌓고, 받는 쪽이 응답하지 않으면 간격을 늘려 가며 다시 보내요. 로컬에서도 CLI 한 줄로 같은 요청을 받아&nbsp;볼&nbsp;수&nbsp;있어요.</p>
+    <div class="row"><a class="btn btn-main" href="#">계정 만들기</a><a class="btn btn-line" href="#">문서 읽기</a></div>
+    <div class="install mono"><b>$</b>npm i -g @relay/cli<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="rgb(255 255 255 / .58)" stroke-width="1.3" aria-hidden="true"><rect x="4.5" y="4.5" width="8" height="8" rx="1.5"/><path d="M9.5 2.5V2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v6.5a1 1 0 0 0 1 1h.5"/></svg></div>
+  </div>
+  <div class="term">
+    <div class="win">
+      <div class="bar"><i></i><i></i><i></i><span class="mono">relay listen</span></div>
+<div class="out mono"><span class="d">$</span> <span class="c">relay listen --forward localhost:3000/webhooks</span>
+<span class="g">ok</span>  엔드포인트 <span class="a">https://in.relay.dev/r/7f3k</span>
+    localhost:3000 으로 전달하는 중
+
+<span class="d">14:02:11</span>  POST /webhooks/payments   <span class="g">200</span>  41ms
+<span class="d">14:02:13</span>  POST /webhooks/orders     <span class="w">503</span>  재시도 1/5, 4초 뒤
+<span class="d">14:02:17</span>  POST /webhooks/orders     <span class="g">200</span>  38ms
+<span class="d">14:02:20</span>  POST /webhooks/payments   <span class="g">200</span>  45ms
+<span class="d">14:02:26</span>  POST /webhooks/refunds    <span class="g">200</span>  52ms</div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap logs">
+  <h2>모든 요청을 다시 볼 수 있어요</h2>
+  <p class="sub">본문과 헤더, 재시도 기록까지 30일 동안 보관해요.</p>
+  <div class="panel">
+    <div class="ptop"><span class="f on">전체</span><span class="f">실패</span><span class="f">재시도 중</span><span class="live"><i></i>실시간</span></div>
+    <table>
+      <thead><tr><th>상태</th><th>경로</th><th>시도</th><th>지연</th><th>받은 시각</th></tr></thead>
+      <tbody>
+        <tr><td><span class="st ok">200</span></td><td class="p mono">/webhooks/refunds</td><td>1</td><td>52ms</td><td>14:02:26</td></tr>
+        <tr><td><span class="st ok">200</span></td><td class="p mono">/webhooks/orders</td><td>2</td><td>38ms</td><td>14:02:17</td></tr>
+        <tr><td><span class="st w">503</span></td><td class="p mono">/webhooks/orders</td><td>1</td><td>3,012ms</td><td>14:02:13</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+</main>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!doctype html>
+<!-- base style: minimal + treatment: aurora-gradient
+     The aurora lives in exactly one place: the bottom of the "듣는 중" (listening) screen, where it
+     stands for the voice being heard. It is not a blob behind the headline. Colors come from the
+     brand's warm hue family (rose → orange → amber, ~55° of hue), static, 78% opacity, 90px blur, screen-blended on the dark field.
+     No text sits on the glow except a solid white button; transcript text stays on the dark field
+     (≥4.5:1). The rest of the page is plain minimal: ink on near-white, one accent. -->
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>모아노트 — aurora-gradient</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root{
+    --bg:#FAFAFA; --ink:#17181C; --muted:#5A5D66; --line:#E3E4E8;
+    --rose:#F0507A; --orange:#FF7A33; --amber:#FFB238;
+    --stage:#18141A; --stage-text:#F4F1F3; --stage-muted:#B5ADB6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink)}
+  body{font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif;word-break:keep-all;-webkit-font-smoothing:antialiased;min-height:900px}
+  .wrap{width:1440px;margin:0 auto;padding:0 96px}
+  nav{height:80px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;letter-spacing:-.02em}
+  .dot{width:10px;height:10px;border-radius:50%;background:var(--orange)}
+  .links{display:flex;gap:36px;font-size:15px;color:var(--muted)}
+  .login{font-size:15px;font-weight:600}
+  main{display:grid;grid-template-columns:1fr 600px;gap:96px;align-items:center;padding-top:56px}
+  h1{font-size:58px;line-height:1.2;letter-spacing:-.03em;font-weight:700}
+  .lede{margin-top:28px;font-size:19px;line-height:1.7;color:var(--muted);max-width:29em;letter-spacing:-.01em}
+  .actions{margin-top:40px;display:flex;gap:12px}
+  .btn{display:inline-flex;align-items:center;height:52px;padding:0 24px;border-radius:26px;font-size:16px;font-weight:600;text-decoration:none;color:var(--ink)}
+  .btn-primary{background:var(--ink);color:#fff}
+  .btn-line{border:1.5px solid #C9CBD1}
+  .steps{margin-top:64px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;border-top:1px solid var(--line);padding-top:28px;max-width:600px}
+  .steps b{display:block;font-size:15px;font-weight:600}
+  .steps span{display:block;margin-top:6px;font-size:14px;line-height:1.6;color:var(--muted)}
+
+  /* listening screen — the only place the aurora appears */
+  .stage{position:relative;height:700px;border-radius:32px;background:var(--stage);color:var(--stage-text);overflow:hidden;isolation:isolate}
+  .aurora{position:absolute;left:-10%;right:-10%;bottom:-150px;height:520px;z-index:-1;opacity:.78;filter:blur(90px);mix-blend-mode:screen}
+  .aurora i{position:absolute;border-radius:50%}
+  .aurora .a{width:60%;height:340px;left:4%;top:110px;background:var(--rose)}
+  .aurora .b{width:54%;height:360px;left:28%;top:40px;background:var(--orange)}
+  .aurora .c{width:44%;height:300px;right:2%;top:130px;background:var(--amber)}
+  .s-head{display:flex;justify-content:space-between;align-items:center;padding:28px 36px}
+  .live{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600}
+  .live i{width:8px;height:8px;border-radius:50%;background:var(--amber)}
+  .clock{font-size:15px;color:var(--stage-muted);font-variant-numeric:tabular-nums}
+  .feed{padding:12px 36px 0;display:grid;gap:22px}
+  .line{display:grid;grid-template-columns:72px 1fr;gap:16px;font-size:17px;line-height:1.6}
+  .line .who{font-size:14px;color:var(--stage-muted);padding-top:2px}
+  .line.old{color:var(--stage-muted)}
+  .line.now p{color:var(--stage-text)}
+  .caret{display:inline-block;width:2px;height:18px;background:var(--stage-text);vertical-align:-3px;margin-left:2px}
+  .decided{margin:6px 36px 0;padding:16px 18px;border-radius:14px;background:rgb(255 255 255 / .07);border:1px solid rgb(255 255 255 / .12)}
+  .decided b{font-size:13px;color:var(--amber);font-weight:600}
+  .decided p{margin-top:4px;font-size:16px;line-height:1.55}
+  .s-foot{position:absolute;left:0;right:0;bottom:44px;display:flex;flex-direction:column;align-items:center;gap:16px}
+  .pause{height:52px;padding:0 28px;border-radius:26px;background:#fff;color:var(--ink);font-size:16px;font-weight:650;border:0;display:inline-flex;align-items:center;gap:10px}
+  .pause i{width:12px;height:14px;border-left:4px solid var(--ink);border-right:4px solid var(--ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <div class="brand"><span class="dot" aria-hidden="true"></span>모아노트</div>
+    <div class="links"><a>기능</a><a>요금</a><a>도움말</a></div>
+    <a class="login">로그인</a>
+  </nav>
+  <main>
+    <section>
+      <h1>말하는 동안<br>회의록이 쓰입니다</h1>
+      <p class="lede">모아노트는 회의를 들으면서 바로 받아 적습니다. 회의가 끝나면 정해진 일과 할 일만 추려 팀 채널에 올립니다.</p>
+      <div class="actions"><a class="btn btn-primary" href="#">무료로 써 보기</a><a class="btn btn-line" href="#">예시 회의록 보기</a></div>
+      <div class="steps">
+        <p><b>듣고</b><span>노트북이나 휴대폰 마이크로 녹음합니다</span></p>
+        <p><b>적고</b><span>말한 사람별로 실시간 자막을 남깁니다</span></p>
+        <p><b>추립니다</b><span>결정과 할 일을 따로 묶어 보냅니다</span></p>
+      </div>
+    </section>
+
+    <section class="stage" aria-label="듣는 중 화면 예시">
+      <div class="aurora" aria-hidden="true"><i class="a"></i><i class="b"></i><i class="c"></i></div>
+      <div class="s-head"><span class="live"><i aria-hidden="true"></i>듣는 중</span><span class="clock">주간 제품 회의 · 24:12</span></div>
+      <div class="feed">
+        <div class="line old"><span class="who">박도윤</span><p>결제 모듈 QA가 이번 주 안에는 어려울 것 같아요.</p></div>
+        <div class="line old"><span class="who">김서연</span><p>그러면 출시를 한 주 미루는 게 낫겠네요. 다들 괜찮으세요?</p></div>
+        <div class="line now"><span class="who">이하린</span><p>네, 기존 사용자 공지 문구는 제가 금요일까지 고칠게요<span class="caret" aria-hidden="true"></span></p></div>
+      </div>
+      <div class="decided"><b>방금 정해진 일</b><p>출시일을 11월 4일로 옮깁니다. 공지 문구는 이하린 님이 금요일까지.</p></div>
+      <div class="s-foot"><button class="pause" type="button"><i aria-hidden="true"></i>잠시 멈추기</button></div>
+    </section>
+  </main>
+</div>
+</body>
+</html>

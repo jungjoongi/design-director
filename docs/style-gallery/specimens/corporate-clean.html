@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>모아노트 — 코퍼릿 클린</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root {
+    --brand: #1F4BB8;          /* navy-blue brand, actions only */
+    --brand-hover: #193D96;
+    --brand-tint: #EEF3FC;
+    --g0: #FFFFFF; --g1: #F7F8FA; --g2: #EEF1F5; --g3: #DDE2E9; --g4: #C3CAD5;
+    --g5: #687284; --g6: #5A6476; --g7: #3A4354; --g8: #171C26;
+    --ok: #13795B; --ok-tint: #E7F5EF;
+    --warn: #A15C00; --warn-tint: #FDF3E3;
+    --r-btn: 8px; --r-card: 12px;
+    --sh-1: 0 1px 2px rgba(23, 28, 38, 0.06);
+    --sh-2: 0 1px 2px rgba(23, 28, 38, 0.05), 0 12px 32px -8px rgba(23, 28, 38, 0.14);
+    --font: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html:lang(ko) { word-break: keep-all; overflow-wrap: break-word; }
+  body { font-family: var(--font); background: var(--g0); color: var(--g8); font-size: 17px; line-height: 1.6; letter-spacing: -0.01em; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3 { text-wrap: balance; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+  :focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+
+  /* nav */
+  .nav { height: 68px; display: flex; align-items: center; gap: 40px; }
+  .topbar { border-bottom: 1px solid var(--g2); }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; letter-spacing: -0.02em; }
+  .nav-links { display: flex; gap: 28px; font-size: 15px; color: var(--g7); }
+  .nav-links a:hover { color: var(--brand); }
+  .nav-right { margin-left: auto; display: flex; gap: 12px; align-items: center; font-size: 15px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 20px; border-radius: var(--r-btn); font-weight: 600; font-size: 15px; transition: background-color 180ms ease-out, border-color 180ms ease-out; }
+  .btn-primary { background: var(--brand); color: #fff; }
+  .btn-primary:hover { background: var(--brand-hover); }
+  .btn-secondary { border: 1px solid var(--g4); color: var(--g8); background: #fff; }
+  .btn-secondary:hover { border-color: var(--g6); }
+  .btn-lg { height: 52px; padding: 0 26px; font-size: 16px; }
+
+  /* hero split */
+  .hero { display: grid; grid-template-columns: 1fr 1.12fr; gap: 48px; align-items: center; padding-top: 72px; padding-bottom: 80px; }
+  .hero h1 { font-size: 46px; line-height: 1.25; font-weight: 700; letter-spacing: -0.025em; }
+  .hero .sub { margin-top: 24px; font-size: 18px; color: var(--g6); max-width: 26em; }
+  .hero .actions { margin-top: 36px; display: flex; gap: 12px; }
+  .hero .fine { margin-top: 20px; font-size: 14px; color: var(--g6); display: flex; gap: 20px; }
+  .hero .fine span { display: inline-flex; align-items: center; gap: 6px; }
+
+  /* product UI */
+  .app { border: 1px solid var(--g3); border-radius: var(--r-card); background: #fff; box-shadow: var(--sh-2); overflow: hidden; display: grid; grid-template-columns: 192px 1fr; min-height: 470px; }
+  .side { background: var(--g1); border-right: 1px solid var(--g2); padding: 18px 12px; font-size: 14px; }
+  .side .h { font-size: 13px; font-weight: 600; color: var(--g6); padding: 0 10px; margin: 4px 0 8px; }
+  .side a { display: block; padding: 9px 10px; border-radius: 6px; color: var(--g7); line-height: 1.4; }
+  .side a small { display: block; font-size: 13px; color: var(--g5); }
+  .side a.on { background: #fff; color: var(--g8); font-weight: 600; box-shadow: var(--sh-1); border: 1px solid var(--g2); }
+  .main { padding: 22px 26px; }
+  .main-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+  .main-top h2 { font-size: 20px; line-height: 1.35; font-weight: 700; letter-spacing: -0.02em; }
+  .main-top p { font-size: 13px; color: var(--g6); margin-top: 2px; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 6px; font-size: 13px; font-weight: 600; background: var(--ok-tint); color: var(--ok); white-space: nowrap; }
+  .block { margin-top: 18px; border: 1px solid var(--g2); border-radius: 8px; }
+  .block-h { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--g2); font-size: 14px; font-weight: 600; }
+  .block-h span { font-size: 13px; color: var(--g6); font-weight: 500; }
+  .row { display: flex; align-items: center; gap: 12px; padding: 10px 14px; font-size: 15px; border-bottom: 1px solid var(--g2); }
+  .row:last-child { border-bottom: 0; }
+  .check { width: 18px; height: 18px; border: 1.5px solid var(--g4); border-radius: 4px; flex: none; }
+  .check.done { background: var(--brand); border-color: var(--brand); display: grid; place-items: center; }
+  .who { margin-left: auto; font-size: 13px; color: var(--g6); white-space: nowrap; }
+  .due { font-size: 13px; color: var(--warn); background: var(--warn-tint); padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
+  .num { font-variant-numeric: tabular-nums; }
+  .send { margin-top: 16px; display: flex; justify-content: flex-end; gap: 8px; }
+  .send .btn { height: 36px; font-size: 14px; padding: 0 14px; }
+
+  /* next section: flow diagram band */
+  .flow { background: var(--g1); border-top: 1px solid var(--g2); padding: 80px 0 112px; }
+  .flow-head { display: flex; justify-content: space-between; align-items: end; gap: 40px; }
+  .flow h2 { font-size: 36px; line-height: 1.3; font-weight: 700; letter-spacing: -0.02em; }
+  .flow-head p { max-width: 30em; color: var(--g6); font-size: 17px; }
+
+  @media (max-width: 900px) {
+    .wrap { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding-top: 48px; padding-bottom: 48px; }
+    .hero h1 { font-size: 36px; }
+    .app { grid-template-columns: 1fr; }
+    .side { display: none; }
+    .flow-head { flex-direction: column; align-items: start; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+  <div class="topbar"><header class="wrap nav">
+    <a class="logo" href="#">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="1" y="1" width="22" height="22" rx="6" fill="#1F4BB8"/><path d="M7 15.5V10M10.3 17V7M13.7 15V9M17 13v-2" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
+      모아노트
+    </a>
+    <nav class="nav-links" aria-label="주요 메뉴"><a href="#">제품</a><a href="#">요금</a><a href="#">보안</a><a href="#">고객센터</a></nav>
+    <div class="nav-right">
+      <a href="#" style="color: var(--g7); padding: 0 8px;">로그인</a>
+      <a class="btn btn-primary" href="#">무료로 시작하기</a>
+    </div>
+  </header></div>
+
+  <main>
+    <section class="wrap hero">
+      <div>
+        <h1>회의는 녹음만 하세요.<br>정리는 모아노트가 할게요.</h1>
+        <p class="sub">녹음 파일을 올리면 결정 사항과 할 일을 나눠서, 5분 안에 팀 채널로 보내 드려요. 담당자와 기한도 함께 적어요.</p>
+        <div class="actions">
+          <a class="btn btn-primary btn-lg" href="#">무료로 시작하기</a>
+          <a class="btn btn-secondary btn-lg" href="#">도입 문의하기</a>
+        </div>
+        <p class="fine">
+          <span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="#13795B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>카드 등록 없이 14일</span>
+          <span><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="#13795B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>녹음은 요약 후 30일 보관</span>
+        </p>
+      </div>
+
+      <div class="app" role="img" aria-label="모아노트 요약 화면">
+        <aside class="side">
+          <p class="h">이번 주 회의</p>
+          <a class="on" href="#">3분기 출시 일정 회의<small class="num">10.14 화 · 42분</small></a>
+          <a href="#">디자인 리뷰<small class="num">10.13 월 · 28분</small></a>
+          <a href="#">주간 영업 회의<small class="num">10.13 월 · 51분</small></a>
+          <a href="#">채용 인터뷰 정리<small class="num">10.10 금 · 35분</small></a>
+          <a href="#">고객 피드백 공유<small class="num">10.10 금 · 22분</small></a>
+        </aside>
+        <div class="main">
+          <div class="main-top">
+            <div>
+              <h2>3분기 출시 일정 회의</h2>
+              <p class="num">2026.10.14 오후 2:00 · 42분 · 참석 5명</p>
+            </div>
+            <span class="badge"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>요약 완료</span>
+          </div>
+          <div class="block">
+            <div class="block-h">결정 사항 <span>2건</span></div>
+            <div class="row">베타 공개일은 11월 4일로 정했어요.</div>
+            <div class="row">가격 페이지는 2주 뒤에 다시 논의해요.</div>
+          </div>
+          <div class="block">
+            <div class="block-h">할 일 <span class="num">1 / 3 완료</span></div>
+            <div class="row"><span class="check done"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3 3 7-7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span style="color: var(--g6); text-decoration: line-through;">QA 체크리스트 공유하기</span><span class="who">박민수</span></div>
+            <div class="row"><span class="check"></span>온보딩 문구 고치기<span class="who">김지은</span><span class="due num">10.18까지</span></div>
+            <div class="row"><span class="check"></span>베타 초대 메일 초안 쓰기<span class="who">이서연</span><span class="due num">10.21까지</span></div>
+          </div>
+          <div class="send">
+            <a class="btn btn-secondary" href="#">수정하기</a>
+            <a class="btn btn-primary" href="#">팀 채널로 보내기</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="flow">
+      <div class="wrap">
+        <div class="flow-head">
+          <h2>회의 하나가 끝나면 이렇게 흘러가요</h2>
+          <p>녹음, 요약, 공유가 한 흐름으로 이어져요. 쓰던 채널과 캘린더는 그대로 두고 연결만 하면 돼요.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>함께공부 — 플레이풀 일러스트</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gaegu:wght@700&display=swap">
+<style>
+:root{
+  --cream:#FFF6E8; --paper:#FFFDF8; --ink:#24312C; --ink-2:#4A5650; --ink-3:#5F6A64; --line:#EFE3CF;
+  --green:#12804F; --leaf:#34B077; --leaf-soft:#DDF3E6; --sun:#FFC93C; --sun-soft:#FFF0C2; --coral:#FF8A65; --coral-soft:#FFE3D8; --sky:#7CC6F2; --sky-soft:#DDF0FC;
+  --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",system-ui,sans-serif;
+  --spring:cubic-bezier(.34,1.56,.64,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html:lang(ko){word-break:keep-all;overflow-wrap:break-word}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);font-size:16px;line-height:1.6;letter-spacing:-.01em;-webkit-font-smoothing:antialiased}
+h1,h2,h3{text-wrap:balance}
+a{color:inherit;text-decoration:none}
+.num{font-variant-numeric:tabular-nums}
+
+.nav{max-width:1240px;margin:0 auto;padding:0 40px;height:80px;display:flex;align-items:center;gap:40px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:22px;letter-spacing:-.02em}
+.nav ul{display:flex;gap:28px;list-style:none;font-weight:600;color:var(--ink-2)}
+.nav ul .on{color:var(--ink)}
+.search{margin-left:auto;display:flex;align-items:center;gap:8px;width:260px;height:44px;padding:0 16px;border:2px solid var(--ink);border-radius:999px;background:var(--paper);color:var(--ink-3);font-size:15px}
+.me{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px}
+.avatar{width:40px;height:40px;border-radius:50%;border:2px solid var(--ink);background:var(--sky-soft);display:grid;place-items:center;overflow:hidden}
+.lv{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:999px;font-size:12px;font-weight:800;letter-spacing:0;border:1.5px solid var(--ink)}
+.lv.g{background:var(--leaf-soft)} .lv.y{background:var(--sun-soft)} .lv.c{background:var(--coral-soft)} .lv.s{background:var(--sky-soft)}
+
+.layout{max-width:1240px;margin:0 auto;padding:16px 40px 96px;display:grid;grid-template-columns:1fr 360px;gap:32px;align-items:start}
+.board{background:var(--paper);border:2px solid var(--ink);border-radius:24px;overflow:hidden}
+.bar{display:flex;align-items:center;gap:8px;padding:20px 24px;border-bottom:2px solid var(--ink)}
+.chip{height:38px;padding:0 16px;border-radius:999px;display:inline-flex;align-items:center;font-weight:700;font-size:15px;color:var(--ink-2);border:2px solid transparent}
+.chip.on{background:var(--ink);color:#fff}
+.btn{margin-left:auto;display:inline-flex;align-items:center;gap:8px;height:46px;padding:0 22px;border-radius:14px;border:2px solid var(--ink);background:var(--green);color:#fff;font-weight:800;font-size:16px;
+  box-shadow:0 4px 0 var(--ink);transition:transform .25s var(--spring),box-shadow .25s var(--spring)}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
+.notice{display:flex;align-items:center;gap:12px;padding:14px 24px;background:var(--sun-soft);border-bottom:1px solid var(--line);font-size:15px;font-weight:600}
+.notice b{font-size:13px;font-weight:800;color:var(--ink)}
+.post{display:grid;grid-template-columns:1fr auto;gap:24px;padding:20px 24px;border-bottom:1px solid var(--line)}
+.tag{display:inline-block;font-size:13px;font-weight:800;padding:1px 10px;border-radius:8px;margin-right:8px;vertical-align:2px}
+.tag.q{background:var(--sky-soft);color:#1F5E86} .tag.p{background:var(--leaf-soft);color:var(--green)} .tag.f{background:var(--coral-soft);color:#A6452A}
+.post h3{display:inline;font-size:17px;font-weight:700;line-height:1.5}
+.post h3 em{font-style:normal;color:var(--green);font-weight:800;margin-left:4px;font-size:15px}
+.post p{font-size:15px;color:var(--ink-2);margin:6px 0 10px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;overflow:hidden}
+.meta{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-3)}
+.meta strong{color:var(--ink);font-weight:700}
+.react{display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:6px;font-size:14px;font-weight:700;color:var(--ink-2)}
+
+.side{display:grid;gap:20px}
+.mascot{background:var(--leaf-soft);border:2px solid var(--ink);border-radius:24px;padding:20px 24px 24px;position:relative;overflow:hidden}
+.mascot .hand{font-family:"Gaegu",var(--sans);font-size:24px;line-height:1.2;letter-spacing:0;color:var(--green);transform:rotate(-2deg);display:inline-block}
+.mascot h2{font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1.35;margin:4px 0 14px}
+.week{display:flex;gap:6px;margin-top:56px}
+.mascot .tip{font-size:14px;color:var(--ink-2);margin-top:12px}
+.recruit{background:var(--coral-soft);border:2px solid var(--ink);border-radius:24px;padding:18px 24px;display:flex;align-items:center;gap:16px}
+.recruit div{flex:1;font-size:14px;color:var(--ink-2)}
+.recruit b{display:block;font-size:16px;color:var(--ink)}
+.btn-s{height:40px;padding:0 16px;border-radius:12px;border:2px solid var(--ink);background:var(--sun);font-weight:800;font-size:14px;display:inline-flex;align-items:center;box-shadow:0 3px 0 var(--ink)}
+.week i{width:30px;height:30px;border-radius:10px;border:2px solid var(--ink);background:var(--paper);display:grid;place-items:center;font:800 12px/1 var(--sans);font-style:normal}
+.week i.on{background:var(--sun)}
+.mascot svg.char{position:absolute;right:6px;top:4px;width:172px;animation:wiggle 2.4s var(--spring) infinite alternate;transform-origin:50% 100%}
+@keyframes wiggle{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
+@media (prefers-reduced-motion:reduce){.mascot svg.char{animation:none}.btn{transition:none}}
+.hot{background:var(--paper);border:2px solid var(--ink);border-radius:24px;padding:20px 24px}
+.hot h2{font-size:18px;font-weight:800;margin-bottom:8px}
+.hot ol{list-style:none;counter-reset:r}
+.hot li{counter-increment:r;display:flex;gap:12px;padding:9px 0;font-size:15px;font-weight:600;border-top:1px solid var(--line)}
+.hot li:first-child{border-top:0}
+.hot li::before{content:counter(r);width:22px;flex:none;font-weight:800;color:var(--green)}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="logo" href="#"><svg width="38" height="38" viewBox="0 0 38 38" aria-hidden="true"><circle cx="19" cy="20" r="16" fill="#FFC93C" stroke="#24312C" stroke-width="2.5"/><path d="M8 13l11-6 11 6-11 6z" fill="#24312C"/><circle cx="14" cy="22" r="2.2" fill="#24312C"/><circle cx="24" cy="22" r="2.2" fill="#24312C"/><path d="M16 27q3 2.5 6 0" fill="none" stroke="#24312C" stroke-width="2" stroke-linecap="round"/></svg>함께공부</a>
+  <ul><li class="on"><a href="#">커뮤니티</a></li><li><a href="#">스터디 찾기</a></li><li><a href="#">공부 기록</a></li></ul>
+  <div class="search"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#24312C" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="5.5"/><path d="M12.5 12.5L16 16"/></svg>궁금한 걸 찾아보세요</div>
+  <a class="me" href="#"><span class="avatar"><svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="30" r="13" fill="#7CC6F2"/><circle cx="20" cy="16" r="7" fill="#FFE3D8" stroke="#24312C" stroke-width="2"/></svg></span>다람 <span class="lv g">Lv.12</span></a>
+</header>
+
+<main class="layout">
+  <section class="board">
+    <div class="bar">
+      <a class="chip on" href="#">전체</a><a class="chip" href="#">인기</a><a class="chip" href="#">질문</a><a class="chip" href="#">공부 인증</a><a class="chip" href="#">자유</a>
+      <a class="btn" href="#"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M9 3v12M3 9h12"/></svg>글쓰기</a>
+    </div>
+    <div class="notice"><b>공지</b>10월 모의고사 같이 풀기 모임, 금요일까지 신청받아요</div>
+    <article class="post"><div><span class="tag q">질문</span><h3>정보처리기사 실기, 기출만 돌려도 될까요?<em>[18]</em></h3><p>필기는 붙었는데 실기 준비 기간이 3주밖에 없어요. 다들 어떤 순서로 보셨는지 궁금해요.</p><div class="meta"><strong>코딩하는감자</strong><span class="lv y">Lv.4</span><span class="num">14:23</span><span>조회 <span class="num">312</span></span></div></div><div class="react"><span>공감 <b class="num">24</b></span></div></article>
+    <article class="post"><div><span class="tag p">공부 인증</span><h3>새벽 6시 스터디 30일째, 오늘도 출석했어요<em>[42]</em></h3><p>처음엔 일주일도 못 갈 줄 알았는데 같이 하니까 되네요. 오늘은 영단어 120개 했어요.</p><div class="meta"><strong>아침형인간</strong><span class="lv c">Lv.21</span><span class="num">13:05</span><span>조회 <span class="num">1,208</span></span></div></div><div class="react"><span>공감 <b class="num">156</b></span></div></article>
+    <article class="post"><div><span class="tag f">자유</span><h3>도서관 자리 맡기 전쟁, 다들 몇 시에 가세요?<em>[9]</em></h3><p>시험 기간이라 8시에 가도 자리가 없어요. 근처에 조용한 카페 아시는 분 있나요?</p><div class="meta"><strong>열람실지박령</strong><span class="lv s">Lv.7</span><span class="num">11:48</span><span>조회 <span class="num">201</span></span></div></div><div class="react"><span>공감 <b class="num">11</b></span></div></article>
+    <article class="post"><div><span class="tag q">질문</span><h3>토익 스피킹 IH에서 AL까지 얼마나 걸리셨어요?<em>[6]</em></h3><p>파트 3 답변이 자꾸 짧아져요. 템플릿을 외우는 게 나을지 고민이에요.</p><div class="meta"><strong>말하는고양이</strong><span class="lv y">Lv.3</span><span class="num">10:12</span><span>조회 <span class="num">96</span></span></div></div><div class="react"><span>공감 <b class="num">5</b></span></div></article>
+    <article class="post"><div><span class="tag p">공부 인증</span><h3>오늘 순공 시간 6시간 40분, 처음으로 목표 넘겼어요<em>[27]</em></h3><p>타이머 켜 두고 휴대폰은 다른 방에 두니까 확실히 달라요.</p><div class="meta"><strong>집중하는펭귄</strong><span class="lv g">Lv.15</span><span class="num">09:31</span><span>조회 <span class="num">540</span></span></div></div><div class="react"><span>공감 <b class="num">88</b></span></div></article>
+  </section>
+
+  <aside class="side">
+    <div class="mascot">
+      <span class="hand">잘하고 있어요!</span>
+      <h2>다람 님,<br>7일째 인증 중</h2>
+      <div class="week"><i class="on">월</i><i class="on">화</i><i class="on">수</i><i class="on">목</i><i class="on">금</i><i class="on">토</i><i>일</i></div>
+      <p class="tip">일요일까지 인증하면 '일주일 개근' 배지를 받아요.</p>
+      <svg class="char" viewBox="0 0 140 140" fill="none" stroke="#24312C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="70" cy="76" r="44" fill="#FFC93C"/>
+        <path d="M34 50l36-20 36 20-36 20z" fill="#24312C"/><path d="M98 54v20"/><circle cx="98" cy="78" r="4" fill="#FF8A65"/>
+        <circle cx="56" cy="80" r="5" fill="#24312C" stroke="none"/><circle cx="84" cy="80" r="5" fill="#24312C" stroke="none"/>
+        <ellipse cx="46" cy="94" rx="7" ry="4" fill="#FF8A65" stroke="none"/><ellipse cx="94" cy="94" rx="7" ry="4" fill="#FF8A65" stroke="none"/>
+        <path d="M62 96q8 8 16 0"/>
+        <path d="M26 92q-14-4-16-18" stroke-width="7"/><path d="M26 92q-14-4-16-18" stroke="#FFC93C" stroke-width="3"/>
+        <path d="M6 76l8-22" stroke-width="3"/><path d="M14 54l2-6"/>
+      </svg>
+    </div>
+    <div class="hot">
+      <h2>이번 주 많이 본 글</h2>
+      <ol><li>한국사 1급, 2주 벼락치기 후기</li><li>뽀모도로 25분이 안 맞는 분들께</li><li>컴활 1급 엑셀 함수 정리 공유해요</li><li>공부 의자 바꾸고 허리가 덜 아파요</li><li>오답 노트, 손으로 쓰세요 앱으로 쓰세요?</li></ol>
+    </div>
+    <div class="recruit"><div><b>새벽 6시 영어 스터디</b>남은 자리 2개, 내일 마감</div><a class="btn-s" href="#">참여하기</a></div>
+  </aside>
+</main>
+</body>
+</html>

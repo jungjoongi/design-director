@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>모아 오브젝트 — 에디토리얼 커머스</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{
+  --ink:#1A1A1A; --grey:#6E6E6E; --grey-2:#A3A3A3; --line:#E6E6E6; --bg:#FFFFFF; --sale:#E2342D;
+  --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html:lang(ko){word-break:keep-all;overflow-wrap:break-word}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2{text-wrap:balance}
+a{color:inherit;text-decoration:none}
+.num{font-variant-numeric:tabular-nums}
+
+.top{display:flex;align-items:center;height:60px;padding:0 40px;gap:48px;border-bottom:1px solid var(--line)}
+.word{font-weight:800;font-size:19px;letter-spacing:-.02em}
+.word span{font-weight:400}
+.cats{display:flex;gap:30px;font-size:15px;font-weight:600}
+.cats a:first-child{border-bottom:2px solid var(--ink);padding-bottom:17px;margin-bottom:-19px}
+.util{margin-left:auto;display:flex;gap:24px;font-size:13px;color:var(--grey)}
+.util b{color:var(--ink);font-weight:600}
+
+.img{position:relative;overflow:hidden}
+.img svg{display:block;width:100%;height:100%}
+.img::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.08;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+.lead{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.feature{height:100%;min-height:600px}
+.feature .cap{position:absolute;left:40px;bottom:40px;color:#fff;z-index:1}
+.feature .cap p{font-size:13px;font-weight:600;margin-bottom:10px}
+.feature .cap h1{font-size:38px;line-height:1.3;font-weight:700;letter-spacing:-.03em;margin-bottom:10px}
+.feature .cap span{font-size:14px;opacity:.92}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:2px;align-content:start}
+
+.prod .img{aspect-ratio:3/4}
+.badge{position:absolute;left:0;top:0;z-index:1;background:var(--ink);color:#fff;font-size:12px;font-weight:600;padding:3px 8px}
+.badge.w{background:#fff;color:var(--ink)}
+.info{padding:14px 16px 18px}
+.brand{font-size:12px;font-weight:700;letter-spacing:.04em;margin-bottom:4px}
+.name{font-size:13px;line-height:1.5;color:#3C3C3C;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;margin-bottom:8px}
+.price{display:flex;align-items:baseline;gap:6px;font-size:14px;font-weight:700}
+.price .off{color:var(--sale)}
+.price s{font-size:12px;font-weight:400;color:var(--grey-2)}
+.meta{font-size:12px;color:var(--grey);margin-top:4px}
+
+.sec{padding:52px 40px 120px}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:24px}
+.sec-head h2{font-size:24px;font-weight:700;letter-spacing:-.02em}
+.sec-head h2 span{font-weight:400;color:var(--grey);margin-left:8px;font-size:15px}
+.sec-head a{font-size:13px;color:var(--grey);border-bottom:1px solid var(--grey-2)}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.grid .info{padding:12px 0 0}
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="word" href="#">모아 <span>오브젝트</span></a>
+  <nav class="cats"><a href="#">기획전</a><a href="#">노트</a><a href="#">필기구</a><a href="#">데스크</a><a href="#">브랜드</a><a href="#">이야기</a></nav>
+  <div class="util"><a href="#">검색</a><a href="#">로그인</a><a href="#">장바구니 <b class="num">2</b></a></div>
+</header>
+
+<main>
+<section class="lead">
+  <a class="img feature" href="#">
+    <svg viewBox="0 0 720 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="f-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8A876A"/><stop offset="1" stop-color="#5F5D47"/></linearGradient>
+        <radialGradient id="f-sun" cx="22%" cy="18%" r="70%"><stop offset="0" stop-color="#FFF6DD" stop-opacity=".38"/><stop offset="1" stop-color="#FFF6DD" stop-opacity="0"/></radialGradient>
+        <linearGradient id="f-fade" x1="0" y1="0" x2="0" y2="1"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".42"/></linearGradient>
+        <filter id="f-sh"><feGaussianBlur stdDeviation="10"/></filter>
+      </defs>
+      <rect width="720" height="640" fill="url(#f-bg)"/><rect width="720" height="640" fill="url(#f-sun)"/>
+      <g transform="translate(330 250) rotate(-12)">
+        <rect x="-190" y="-130" width="380" height="270" fill="#2C2A20" opacity=".45" filter="url(#f-sh)" transform="translate(-16 22)"/>
+        <rect x="-190" y="-130" width="190" height="270" fill="#F4EFE3"/><rect x="0" y="-130" width="190" height="270" fill="#ECE5D6"/>
+        <path d="M0 -130v270" stroke="#CFC5B2" stroke-width="2"/>
+        <g fill="#B9AE98"><circle cx="-160" cy="-100" r="1.6"/><circle cx="-140" cy="-100" r="1.6"/><circle cx="-120" cy="-100" r="1.6"/><circle cx="-100" cy="-100" r="1.6"/><circle cx="-80" cy="-100" r="1.6"/><circle cx="-60" cy="-100" r="1.6"/><circle cx="-40" cy="-100" r="1.6"/></g>
+        <g stroke="#5D5A4C" stroke-width="2" stroke-linecap="round" fill="none"><path d="M-160 -60h96M-160 -36h120M-160 -12h70"/><path d="M30 -70h110M30 -46h84"/></g>
+        <rect x="-150" y="168" width="300" height="12" rx="6" fill="#D9A441" transform="rotate(-6)"/>
+      </g>
+      <g transform="translate(590 120)"><circle r="62" fill="#2C2A20" opacity=".4" filter="url(#f-sh)" transform="translate(-10 16)"/><circle r="62" fill="#F2F0EA"/><circle r="50" fill="none" stroke="#C9C4B6" stroke-width="2"/><path d="M0 0V-36M0 0l22 12" stroke="#2B2B2B" stroke-width="4" stroke-linecap="round"/><rect x="-10" y="-74" width="20" height="10" rx="3" fill="#C94A3A"/></g>
+      <rect width="720" height="640" fill="url(#f-fade)"/>
+    </svg>
+    <div class="cap"><p>기획전</p><h1>회의가 짧아지는 책상</h1><span>노트부터 타이머까지 24가지, 10월 27일까지</span></div>
+  </a>
+
+  <div class="pair">
+    <a class="prod" href="#">
+      <div class="img"><span class="badge">단독</span>
+        <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs><filter id="a-sh"><feGaussianBlur stdDeviation="8"/></filter><linearGradient id="a-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CDD5D8"/><stop offset="1" stop-color="#B7C1C5"/></linearGradient></defs>
+          <rect width="300" height="400" fill="url(#a-bg)"/>
+          <rect x="74" y="98" width="156" height="214" fill="#43505A" opacity=".35" filter="url(#a-sh)" transform="translate(-8 14)"/>
+          <rect x="84" y="88" width="148" height="206" fill="#7D8F79"/><rect x="76" y="100" width="148" height="206" fill="#E8E1D2"/><rect x="68" y="112" width="148" height="206" fill="#A4553A"/>
+          <rect x="68" y="112" width="10" height="206" fill="#8E4630"/><rect x="96" y="148" width="64" height="8" fill="#F2E6D8" opacity=".85"/>
+        </svg></div>
+      <div class="info"><p class="brand">PAPERDAY</p><p class="name">회의용 A5 도트 노트 3권 세트, 120매 무선 제본</p><p class="price num"><span class="off">20%</span>15,200원<s>19,000원</s></p><p class="meta">무료배송, 리뷰 128</p></div>
+    </a>
+    <a class="prod" href="#">
+      <div class="img"><span class="badge w">신상</span>
+        <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs><filter id="b-sh"><feGaussianBlur stdDeviation="5"/></filter><linearGradient id="b-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ECE3C9"/><stop offset="1" stop-color="#DCCFAE"/></linearGradient></defs>
+          <rect width="300" height="400" fill="url(#b-bg)"/>
+          <g transform="translate(150 200) rotate(-32)">
+            <g opacity=".35" filter="url(#b-sh)" transform="translate(-6 10)"><rect x="-120" y="-38" width="240" height="12" rx="6" fill="#4A4232"/><rect x="-120" y="-12" width="240" height="12" rx="6" fill="#4A4232"/><rect x="-120" y="14" width="240" height="12" rx="6" fill="#4A4232"/><rect x="-120" y="40" width="240" height="12" rx="6" fill="#4A4232"/></g>
+            <rect x="-120" y="-38" width="240" height="12" rx="6" fill="#1E2A44"/><rect x="-120" y="-12" width="240" height="12" rx="6" fill="#2F6B4F"/><rect x="-120" y="14" width="240" height="12" rx="6" fill="#B23A32"/><rect x="-120" y="40" width="240" height="12" rx="6" fill="#222"/>
+            <g fill="#D8D8D8"><rect x="60" y="-40" width="34" height="3"/><rect x="60" y="-14" width="34" height="3"/><rect x="60" y="12" width="34" height="3"/><rect x="60" y="38" width="34" height="3"/></g>
+          </g>
+        </svg></div>
+      <div class="info"><p class="brand">LINEWORK</p><p class="name">젤 잉크 펜 0.5 네 가지 색, 회의 메모용 세트</p><p class="price num"><span class="off">10%</span>10,800원<s>12,000원</s></p><p class="meta">리뷰 64</p></div>
+    </a>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head"><h2>회의 테이블 위의 물건<span class="num">24</span></h2><a href="#">전체 보기</a></div>
+  <div class="grid">
+    <a class="prod" href="#"><div class="img"><svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="300" height="400" fill="#D9D4CB"/><circle cx="150" cy="190" r="86" fill="#F4F2EE"/><circle cx="150" cy="190" r="70" fill="none" stroke="#C8C2B6" stroke-width="2"/><path d="M150 190v-48M150 190l30 18" stroke="#2B2B2B" stroke-width="5" stroke-linecap="round"/></svg></div></a>
+    <a class="prod" href="#"><div class="img"><svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="300" height="400" fill="#2F3A33"/><rect x="70" y="90" width="160" height="200" fill="#F1EADB"/><g stroke="#C9BFA9" stroke-width="2"><path d="M88 130h124M88 156h124M88 182h124M88 208h124M88 234h124"/></g></svg></div></a>
+    <a class="prod" href="#"><div class="img"><svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="300" height="400" fill="#E6D7D0"/><g fill="none" stroke="#2A2A2A" stroke-width="7" stroke-linejoin="round"><path d="M96 150h56l-8 70h-40z"/><path d="M162 170h48l-6 60h-36z"/></g></svg></div></a>
+    <a class="prod" href="#"><div class="img"><svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="300" height="400" fill="#C7CCC2"/><path d="M96 140h108l-10 130q-44 16-88 0z" fill="#ECE8DF"/><path d="M204 166q34 4 32 34t-38 28" fill="none" stroke="#ECE8DF" stroke-width="12"/></svg></div></a>
+    <a class="prod" href="#"><div class="img"><svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="300" height="400" fill="#1F2430"/><rect x="60" y="160" width="180" height="70" rx="10" fill="#8A6F4D"/><path d="M60 182h180" stroke="#6E5639" stroke-width="3"/></svg></div></a>
+  </div>
+</section>
+</main>
+</body>
+</html>

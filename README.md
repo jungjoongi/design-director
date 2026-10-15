@@ -83,6 +83,26 @@ linear.app 왜 이렇게 고급져 보여? 실제 수치로 뜯어봐줘
 - 브랜드 카드 9개: 토스, 당근, 29CM, 무신사, Apple, Linear, Stripe, Vercel, Notion. 실제 사이트를 캡처해 잰 값만 담았고,
   "토스 느낌으로" 같은 요청은 브라우저 없이도 바로 쓴다. 6개월이 지나면 다시 재자고 권한다.
 
+## 스타일 갤러리
+
+카탈로그의 스타일마다 가장 잘 맞는 화면에 적용한 견본이다. 브랜드와 내용은 지어낸 것이고, 사진·로고 없이 만들어 플러그인
+엔진으로 찍었다. 이미지를 누르면 스타일의 한 줄 정의, 시그니처 무브, "프롬프트에 쓸 말"이 있는
+[스타일 갤러리](docs/style-gallery.md)로 간다.
+
+<table>
+<tr><td width="33%"><a href="docs/style-gallery.md#minimal--미니멀"><img src="docs/images/styles/minimal.jpg" alt="minimal"></a><br><b>minimal</b> 미니멀<br><sub>단일 제품 랜딩</sub></td><td width="33%"><a href="docs/style-gallery.md#swiss--스위스"><img src="docs/images/styles/swiss.jpg" alt="swiss"></a><br><b>swiss</b> 스위스<br><sub>컨퍼런스</sub></td><td width="33%"><a href="docs/style-gallery.md#editorial--에디토리얼"><img src="docs/images/styles/editorial.jpg" alt="editorial"></a><br><b>editorial</b> 에디토리얼<br><sub>매거진 기사</sub></td></tr>
+<tr><td width="33%"><a href="docs/style-gallery.md#corporate-clean--코퍼릿-클린"><img src="docs/images/styles/corporate-clean.jpg" alt="corporate-clean"></a><br><b>corporate-clean</b> 코퍼릿 클린<br><sub>B2B SaaS</sub></td><td width="33%"><a href="docs/style-gallery.md#data-dense--데이터-밀집-어드민"><img src="docs/images/styles/data-dense.jpg" alt="data-dense"></a><br><b>data-dense</b> 데이터 밀집<br><sub>어드민</sub></td><td width="33%"><a href="docs/style-gallery.md#neo-brutalism--네오-브루탈리즘"><img src="docs/images/styles/neo-brutalism.jpg" alt="neo-brutalism"></a><br><b>neo-brutalism</b> 네오 브루탈리즘<br><sub>크리에이터 상점</sub></td></tr>
+<tr><td width="33%"><a href="docs/style-gallery.md#playful-illustrative--플레이풀-일러스트-커뮤니티"><img src="docs/images/styles/playful-illustrative.jpg" alt="playful-illustrative"></a><br><b>playful-illustrative</b> 플레이풀 일러스트<br><sub>커뮤니티</sub></td><td width="33%"><a href="docs/style-gallery.md#organic-soft--오가닉-소프트"><img src="docs/images/styles/organic-soft.jpg" alt="organic-soft"></a><br><b>organic-soft</b> 오가닉 소프트<br><sub>스킨케어 브랜드</sub></td><td width="33%"><a href="docs/style-gallery.md#luxury--럭셔리"><img src="docs/images/styles/luxury.jpg" alt="luxury"></a><br><b>luxury</b> 럭셔리<br><sub>주얼리 브랜드</sub></td></tr>
+<tr><td width="33%"><a href="docs/style-gallery.md#dark-tech--다크-테크"><img src="docs/images/styles/dark-tech.jpg" alt="dark-tech"></a><br><b>dark-tech</b> 다크 테크<br><sub>개발자 도구</sub></td><td width="33%"><a href="docs/style-gallery.md#kr-fintech-simple--토스형-핀테크-심플"><img src="docs/images/styles/kr-fintech-simple.jpg" alt="kr-fintech-simple"></a><br><b>kr-fintech-simple</b> 토스형 핀테크 심플<br><sub>금융 앱</sub></td><td width="33%"><a href="docs/style-gallery.md#kr-editorial-commerce--29cm형-에디토리얼-커머스"><img src="docs/images/styles/kr-editorial-commerce.jpg" alt="kr-editorial-commerce"></a><br><b>kr-editorial-commerce</b> 29CM형 에디토리얼 커머스<br><sub>편집숍</sub></td></tr>
+</table>
+
+트리트먼트(표면 효과)는 기본 스타일 위에 한 겹 얹는다. 잘못 쓰면 바로 AI 기본값 패턴이 되기 때문에, 견본은 허용되는 쓰임만 보여준다.
+
+<table>
+<tr><td width="33%"><a href="docs/style-gallery.md#glassmorphism--글래스모피즘"><img src="docs/images/styles/glassmorphism.jpg" alt="glassmorphism"></a><br><b>glassmorphism</b> 글래스모피즘<br><sub>트리트먼트</sub></td><td width="33%"><a href="docs/style-gallery.md#neumorphism--뉴모피즘"><img src="docs/images/styles/neumorphism.jpg" alt="neumorphism"></a><br><b>neumorphism</b> 뉴모피즘<br><sub>트리트먼트</sub></td><td width="33%"><a href="docs/style-gallery.md#aurora-gradient--오로라-그라데이션"><img src="docs/images/styles/aurora-gradient.jpg" alt="aurora-gradient"></a><br><b>aurora-gradient</b> 오로라 그라데이션<br><sub>트리트먼트</sub></td></tr>
+<tr><td width="33%"><a href="docs/style-gallery.md#grain-noise--그레인노이즈"><img src="docs/images/styles/grain-noise.jpg" alt="grain-noise"></a><br><b>grain-noise</b> 그레인·노이즈<br><sub>트리트먼트</sub></td><td width="33%"><a href="docs/style-gallery.md#clay-3d--클레이-3d"><img src="docs/images/styles/clay-3d.jpg" alt="clay-3d"></a><br><b>clay-3d</b> 클레이 3D<br><sub>트리트먼트</sub></td></tr>
+</table>
+
 ## 원칙
 
 - **브리프가 먼저다.** 승인 전에는 `.design/` 밖의 파일을 고치지 않는다.

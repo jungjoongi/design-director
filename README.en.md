@@ -38,6 +38,19 @@ Examples:
 - `restyle our landing like linear.app — dark and precise, but NOT the purple gradient thing`
 - `make our pricing page look more premium; right now it's stock shadcn`
 
+## Style gallery
+
+Each catalog style applied to the kind of screen it suits best (admin, community, fintech app, commerce, …). Brands
+and content are fictional, built without photos or logos, and captured with the plugin's own engine. Details (Korean):
+[docs/style-gallery.md](docs/style-gallery.md).
+
+<table>
+<tr><td width="33%"><a href="docs/style-gallery.md#minimal--미니멀"><img src="docs/images/styles/minimal.jpg" alt="minimal"></a><br><b>minimal</b></td><td width="33%"><a href="docs/style-gallery.md#swiss--스위스"><img src="docs/images/styles/swiss.jpg" alt="swiss"></a><br><b>swiss</b></td><td width="33%"><a href="docs/style-gallery.md#editorial--에디토리얼"><img src="docs/images/styles/editorial.jpg" alt="editorial"></a><br><b>editorial</b></td></tr>
+<tr><td width="33%"><a href="docs/style-gallery.md#corporate-clean--코퍼릿-클린"><img src="docs/images/styles/corporate-clean.jpg" alt="corporate-clean"></a><br><b>corporate-clean</b></td><td width="33%"><a href="docs/style-gallery.md#data-dense--데이터-밀집-어드민"><img src="docs/images/styles/data-dense.jpg" alt="data-dense"></a><br><b>data-dense</b></td><td width="33%"><a href="docs/style-gallery.md#neo-brutalism--네오-브루탈리즘"><img src="docs/images/styles/neo-brutalism.jpg" alt="neo-brutalism"></a><br><b>neo-brutalism</b></td></tr>
+<tr><td width="33%"><a href="docs/style-gallery.md#playful-illustrative--플레이풀-일러스트-커뮤니티"><img src="docs/images/styles/playful-illustrative.jpg" alt="playful-illustrative"></a><br><b>playful-illustrative</b></td><td width="33%"><a href="docs/style-gallery.md#organic-soft--오가닉-소프트"><img src="docs/images/styles/organic-soft.jpg" alt="organic-soft"></a><br><b>organic-soft</b></td><td width="33%"><a href="docs/style-gallery.md#luxury--럭셔리"><img src="docs/images/styles/luxury.jpg" alt="luxury"></a><br><b>luxury</b></td></tr>
+<tr><td width="33%"><a href="docs/style-gallery.md#dark-tech--다크-테크"><img src="docs/images/styles/dark-tech.jpg" alt="dark-tech"></a><br><b>dark-tech</b></td><td width="33%"><a href="docs/style-gallery.md#kr-fintech-simple--토스형-핀테크-심플"><img src="docs/images/styles/kr-fintech-simple.jpg" alt="kr-fintech-simple"></a><br><b>kr-fintech-simple</b></td><td width="33%"><a href="docs/style-gallery.md#kr-editorial-commerce--29cm형-에디토리얼-커머스"><img src="docs/images/styles/kr-editorial-commerce.jpg" alt="kr-editorial-commerce"></a><br><b>kr-editorial-commerce</b></td></tr>
+</table>
+
 ## Principles
 
 - Brief first: nothing outside `.design/` changes before you approve.

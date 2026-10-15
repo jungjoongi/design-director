@@ -1,0 +1,146 @@
+<!doctype html>
+<!-- base style: dark-tech + treatment: glassmorphism
+     Glass is used only on two floating surfaces (summary popover, player bar) that sit over a
+     colorful, layered speaker waveform — the "map / media under floating controls" case.
+     Everything else (nav, hero copy, buttons) stays solid. Text-bearing glass uses a 62% dark fill
+     so contrast holds over the brightest bars; an opaque fallback covers no-backdrop-filter browsers. -->
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>모아노트 — glassmorphism</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root{
+    --bg:#0D0F13; --surface:#14171D; --line:rgb(255 255 255 / .09); --line-2:rgb(255 255 255 / .16);
+    --text:#EEF0F3; --muted:#A3A9B4; --faint:#878D98;
+    --s1:#2FC9B4; --s2:#F2B347; --s3:#EF7A68; --s4:#7FB2F0;
+    --accent:#2FC9B4;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--text)}
+  body{font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif;word-break:keep-all;
+       -webkit-font-smoothing:antialiased;min-height:900px}
+  .wrap{width:1440px;margin:0 auto;padding:0 72px}
+  nav{height:72px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;letter-spacing:-.02em}
+  .mark{width:22px;height:22px;border-radius:6px;background:var(--accent);position:relative}
+  .mark::after{content:"";position:absolute;inset:6px 5px;border-left:2px solid #0D0F13;border-right:2px solid #0D0F13}
+  .links{display:flex;gap:32px;font-size:14px;color:var(--muted)}
+  .nav-cta{display:flex;gap:12px;align-items:center;font-size:14px}
+  .btn{display:inline-flex;align-items:center;height:44px;padding:0 20px;border-radius:8px;font-size:15px;font-weight:600;text-decoration:none}
+  .btn-sm{height:36px;padding:0 14px;font-size:14px}
+  .btn-primary{background:var(--accent);color:#06201C}
+  .btn-ghost{color:var(--text);border:1px solid var(--line-2)}
+  .btn:focus-visible{outline:2px solid #fff;outline-offset:3px}
+
+  main{display:grid;grid-template-columns:500px 1fr;gap:56px;padding-top:88px;align-items:center}
+  h1{font-size:50px;margin-top:-24px;line-height:1.24;letter-spacing:-.03em;font-weight:700}
+  .lede{margin-top:24px;font-size:18px;line-height:1.7;color:var(--muted);letter-spacing:-.01em}
+  .actions{margin-top:36px;display:flex;gap:12px}
+  .note{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);font-size:14px;line-height:1.65;color:var(--muted)}
+  .note b{color:var(--text);font-weight:600}
+
+  /* the colorful, layered canvas that justifies the glass */
+  .canvas{position:relative;height:640px;border-radius:16px;background:var(--surface);border:1px solid var(--line);overflow:hidden}
+  .c-head{display:flex;justify-content:space-between;align-items:center;padding:22px 28px;border-bottom:1px solid var(--line)}
+  .c-title{font-size:15px;font-weight:600}
+  .c-sub{font-size:13px;color:var(--faint);margin-top:4px}
+  .legend{display:flex;gap:18px;font-size:13px;color:var(--muted)}
+  .legend i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px;vertical-align:1px}
+  .lanes{padding:20px 28px 0}
+  .lane{display:grid;grid-template-columns:64px 1fr;align-items:center;height:30px;font-size:12px;color:var(--faint)}
+  .track{position:relative;height:10px}
+  .track span{position:absolute;top:0;height:10px;border-radius:3px}
+  .wave{position:absolute;left:28px;right:28px;top:236px;height:270px;display:flex;align-items:center;gap:4px}
+  .wave b{flex:1;border-radius:2px;display:block}
+  .axis{position:absolute;left:28px;right:28px;bottom:24px;display:flex;justify-content:space-between;font-size:12px;color:var(--faint);font-variant-numeric:tabular-nums}
+  .playhead{position:absolute;top:228px;bottom:132px;width:2px;background:#fff;left:50.4%}
+
+  /* glass surface 1: summary popover */
+  .glass{background:rgb(16 18 24 / .56);
+         backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);
+         border:1px solid rgb(255 255 255 / .2);box-shadow:inset 0 1px 0 rgb(255 255 255 / .18),0 18px 40px rgb(0 0 0 / .35)}
+  @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.glass{background:#1B1F27}}
+  .pop{position:absolute;right:28px;top:250px;width:328px;border-radius:14px;padding:20px 22px}
+  .pop .range{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+  .pop h3{margin-top:8px;font-size:18px;line-height:1.4;letter-spacing:-.02em;font-weight:650}
+  .pop ul{list-style:none;margin-top:14px;display:grid;gap:10px}
+  .pop li{font-size:14px;line-height:1.6;color:#D7DBE2;padding-left:14px;position:relative}
+  .pop li::before{content:"";position:absolute;left:0;top:10px;width:5px;height:5px;border-radius:50%;background:var(--muted)}
+  .todo{margin-top:16px;padding-top:14px;border-top:1px solid rgb(255 255 255 / .14);display:flex;justify-content:space-between;font-size:13px}
+  .todo span{color:var(--muted)}
+
+  /* glass surface 2: player bar */
+  .player{position:absolute;left:50%;transform:translateX(-50%);bottom:64px;width:520px;height:60px;border-radius:30px;
+          display:flex;align-items:center;gap:16px;padding:0 10px 0 10px}
+  .play{width:40px;height:40px;border-radius:50%;background:#fff;display:grid;place-items:center;flex:none}
+  .play::before{content:"";width:0;height:0;border-left:11px solid #0D0F13;border-top:7px solid transparent;border-bottom:7px solid transparent;margin-left:3px}
+  .time{font-size:13px;font-variant-numeric:tabular-nums;color:#E3E6EB;flex:none}
+  .bar{flex:1;height:4px;border-radius:2px;background:rgb(255 255 255 / .22);position:relative}
+  .bar::before{content:"";position:absolute;left:0;top:0;bottom:0;width:50.4%;border-radius:2px;background:#fff}
+  .speed{font-size:13px;font-weight:600;padding:0 12px;height:32px;display:grid;place-items:center;border-radius:16px;border:1px solid rgb(255 255 255 / .24);margin-right:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <div class="brand"><span class="mark" aria-hidden="true"></span>모아노트</div>
+    <div class="links"><a>기능</a><a>요금</a><a>보안</a><a>도움말</a></div>
+    <div class="nav-cta"><a class="btn btn-sm btn-ghost" href="#">로그인</a><a class="btn btn-sm btn-primary" href="#">무료로 써 보기</a></div>
+  </nav>
+
+  <main>
+    <section>
+      <h1>회의는 듣기만 하세요.<br>정리는 저희가 합니다.</h1>
+      <p class="lede">녹음을 올리면 말한 사람별로 나누고, 정해진 일과 할 일을 따로 뽑아 팀 채널에 남깁니다. 한국어 회의에 맞춰 다듬었습니다.</p>
+      <div class="actions"><a class="btn btn-primary" href="#">무료로 써 보기</a><a class="btn btn-ghost" href="#">예시 회의록 보기</a></div>
+      <p class="note"><b>화상회의 녹음 파일과 휴대폰 녹음</b>을 모두 올릴 수 있습니다. 한 시간짜리 회의도 커피 한 잔 사이에 요약이 끝납니다.</p>
+    </section>
+
+    <section class="canvas" aria-label="회의 타임라인 예시">
+      <div class="c-head">
+        <div><div class="c-title">주간 제품 회의</div><div class="c-sub">10월 14일 화요일 · 48분 · 4명</div></div>
+        <div class="legend"><span><i style="background:var(--s1)"></i>김서연</span><span><i style="background:var(--s2)"></i>박도윤</span><span><i style="background:var(--s3)"></i>이하린</span><span><i style="background:var(--s4)"></i>정민재</span></div>
+      </div>
+      <div class="lanes" id="lanes"></div>
+      <div class="wave" id="wave" aria-hidden="true"></div>
+      <div class="playhead" aria-hidden="true"></div>
+      <div class="axis"><span>00:00</span><span>10:00</span><span>20:00</span><span>30:00</span><span>40:00</span><span>48:03</span></div>
+
+      <article class="glass pop">
+        <div class="range">23:40 – 27:15 · 박도윤, 이하린</div>
+        <h3>출시일을 11월 4일로 미루기로 했습니다</h3>
+        <ul>
+          <li>결제 모듈 QA가 이번 주 안에 끝나지 않습니다.</li>
+          <li>기존 사용자에게는 메일로 먼저 알립니다.</li>
+        </ul>
+        <div class="todo"><span>할 일 · 공지 문구 고치기</span><b>이하린 · 금요일</b></div>
+      </article>
+
+      <div class="glass player" role="group" aria-label="재생">
+        <span class="play" aria-label="재생"></span>
+        <span class="time">24:12 / 48:03</span>
+        <span class="bar"></span>
+        <span class="speed">1.5배</span>
+      </div>
+    </section>
+  </main>
+</div>
+<script>
+  // deterministic speaker lanes + waveform
+  const C=['var(--s1)','var(--s2)','var(--s3)','var(--s4)'],names=['김서연','박도윤','이하린','정민재'];
+  let seed=7;const r=()=>(seed=(seed*16807)%2147483647)/2147483647;
+  const segs=[];let t=0,who=0;
+  while(t<100){const len=2+r()*9;segs.push([who,t,Math.min(len,100-t)]);t+=len+0.4;who=(who+1+Math.floor(r()*3))%4;}
+  const lanes=document.getElementById('lanes');
+  names.forEach((n,i)=>{const row=document.createElement('div');row.className='lane';
+    row.innerHTML='<span>'+n+'</span><div class="track">'+segs.filter(s=>s[0]===i).map(s=>'<span style="left:'+s[1]+'%;width:'+s[2]+'%;background:'+C[i]+'"></span>').join('')+'</div>';
+    lanes.appendChild(row);});
+  const wave=document.getElementById('wave');const N=118;
+  for(let k=0;k<N;k++){const p=k/N*100;const s=segs.find(s=>p>=s[1]&&p<s[1]+s[2]+0.4)||segs[0];
+    const h=18+Math.abs(Math.sin(k*0.37)*0.6+Math.sin(k*0.11)*0.4)*78+r()*22;
+    const b=document.createElement('b');b.style.height=Math.min(h,100)+'%';b.style.background=C[s[0]];b.style.opacity=.92;wave.appendChild(b);}
+</script>
+</body>
+</html>

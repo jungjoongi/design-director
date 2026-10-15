@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>숲결 — 오가닉 소프트</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap">
+<style>
+:root{
+  --bg:#F7F3EC; --oat:#EDE5D8; --sand:#E3D7C5; --line:#DDD3C4; --card:#FBF8F2;
+  --text:#3B342D; --text-2:#554C43; --sage:#5B7054; --sage-soft:#DCE3D3;
+  --round:"Gowun Dodum","Pretendard Variable",Pretendard,sans-serif;
+  --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html:lang(ko){word-break:keep-all;overflow-wrap:break-word}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);font-size:17px;line-height:1.75;letter-spacing:-.01em;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:5;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+h1,h2,h3{text-wrap:balance;font-family:var(--round);font-weight:400}
+p{text-wrap:pretty}
+a{color:inherit;text-decoration:none}
+.num{font-variant-numeric:tabular-nums}
+.wrap{max-width:1200px;margin:0 auto;padding:0 48px}
+
+.nav{display:flex;align-items:center;justify-content:space-between;height:88px;font-size:16px;color:var(--text-2)}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--round);font-size:23px;color:var(--text)}
+.nav ul{display:flex;gap:40px;list-style:none}
+.nav .end{display:flex;gap:28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;font:inherit;font-weight:500;border-radius:28px;transition:background-color .5s ease-in-out}
+.btn-main{padding:17px 34px;background:var(--sage);color:#FBF8F2;font-size:17px}
+.btn-main:hover{background:#4E6248}
+.link{font-size:16px;color:var(--text);border-bottom:1px solid var(--line);padding-bottom:2px}
+
+.hero{display:grid;grid-template-columns:1fr 500px;gap:80px;align-items:center;padding:8px 48px 96px}
+.kicker{font-size:15px;color:var(--sage);margin-bottom:18px}
+.hero h1{font-size:56px;line-height:1.34;letter-spacing:-.02em;margin-bottom:26px}
+.lede{font-size:18px;color:var(--text-2);max-width:25em;margin-bottom:32px}
+.buy{display:flex;align-items:center;gap:28px}
+.price{font-size:16px;color:var(--text-2);margin-bottom:22px}
+.price b{font-weight:600;color:var(--text);font-size:20px;margin-right:6px}
+
+.photo{position:relative;height:580px}
+.arch{position:absolute;inset:0 0 0 40px;border-radius:999px 999px 28px 28px;overflow:hidden;background:var(--sand)}
+.arch svg{width:100%;height:100%;display:block}
+.note{position:absolute;left:-40px;bottom:40px;width:268px;background:var(--card);border-radius:24px;padding:22px 24px;
+  box-shadow:0 18px 40px rgb(72 56 40 / .07);animation:rise 600ms ease-in-out both .2s}
+.note h3{font-size:18px;margin-bottom:10px}
+.note dl{display:grid;grid-template-columns:1fr auto;gap:8px 12px;font-size:15px;line-height:1.5;color:var(--text-2)}
+.note dd{color:var(--text);font-weight:500}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.note{animation:none}.btn{transition:none}}
+
+.after{position:relative;background:var(--oat);padding:36px 0 140px}
+.after .curve{position:absolute;left:0;right:0;top:-79px;width:100%;height:80px;display:block}
+.after h2{font-size:38px;line-height:1.35;letter-spacing:-.02em;margin-bottom:28px}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.trio div{height:300px;border-radius:999px 999px 24px 24px;background:#E4DACB}
+</style>
+</head>
+<body>
+<header class="wrap nav">
+  <a class="logo" href="#"><svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#5B7054" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M15 27C8 21 5 15 7 8c5 0 9 3 8 19z" fill="#DCE3D3"/><path d="M15 27c7-6 10-12 8-19-5 0-9 3-8 19z"/></svg>숲결</a>
+  <ul><li><a href="#">세럼</a></li><li><a href="#">크림</a></li><li><a href="#">클렌징</a></li><li><a href="#">성분 이야기</a></li></ul>
+  <div class="end"><a href="#">로그인</a><a href="#">장바구니 <span class="num">0</span></a></div>
+</header>
+
+<main>
+<section class="wrap hero">
+  <div>
+    <p class="kicker">쑥 진정 세럼</p>
+    <h1>쑥 한 줌, 귀리 한 숟갈.<br>붉어진 피부를<br>천천히 가라앉혀요</h1>
+    <p class="lede">강화 쑥 추출물에 귀리 오일을 더했어요. 바르고 1분이면 스며들어서, 화장 전에도 가볍게 쓸 수 있어요.</p>
+    <p class="price"><b class="num">32,000원</b>30ml, 약 두 달 분량</p>
+    <div class="buy"><a class="btn btn-main" href="#">장바구니에 담기</a><a class="link" href="#">전성분 보기</a></div>
+  </div>
+
+  <div class="photo">
+    <div class="arch" aria-hidden="true">
+      <svg viewBox="0 0 460 580" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="wall" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EFE7DA"/><stop offset="1" stop-color="#D6C8B2"/></linearGradient>
+          <radialGradient id="sun" cx="70%" cy="20%" r="62%"><stop offset="0" stop-color="#FFF8EC" stop-opacity=".9"/><stop offset="1" stop-color="#FFF8EC" stop-opacity="0"/></radialGradient>
+          <linearGradient id="stone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D8CDBD"/><stop offset="1" stop-color="#B9AA94"/></linearGradient>
+          <linearGradient id="glass" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9DAF93"/><stop offset=".35" stop-color="#B9C7AE"/><stop offset=".7" stop-color="#8FA285"/><stop offset="1" stop-color="#768A6D"/></linearGradient>
+          <linearGradient id="bulb" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#E9E3D7"/><stop offset=".5" stop-color="#F6F2EA"/><stop offset="1" stop-color="#D3CBBC"/></linearGradient>
+          <filter id="leafshadow"><feGaussianBlur stdDeviation="9"/></filter>
+          <filter id="ground"><feGaussianBlur stdDeviation="8"/></filter>
+        </defs>
+        <rect width="460" height="580" fill="url(#wall)"/><rect width="460" height="580" fill="url(#sun)"/>
+        <g fill="#8F7C64" opacity=".2" filter="url(#leafshadow)">
+          <path d="M290 30c40 10 70 40 74 80-40-6-70-36-74-80z"/><path d="M350 140c30 20 46 52 40 86-32-16-46-50-40-86z"/><path d="M240 110c34 4 60 28 66 62-34-4-60-28-66-62z"/><path d="M320-10l-60 260" stroke="#8F7C64" stroke-width="6" fill="none"/>
+        </g>
+        <path d="M0 420q230-24 460 0v160H0z" fill="#CDBEA8"/>
+        <!-- stone plinth -->
+        <ellipse cx="250" cy="444" rx="150" ry="16" fill="#6E5A44" opacity=".25" filter="url(#ground)"/>
+        <path d="M110 380h280v52q-140 22-280 0z" fill="url(#stone)"/>
+        <ellipse cx="250" cy="380" rx="140" ry="18" fill="#E2D8CA"/>
+        <!-- dropper bottle -->
+        <ellipse cx="236" cy="384" rx="62" ry="9" fill="#5A4A38" opacity=".3" filter="url(#ground)"/>
+        <path d="M188 240q0-16 16-16h64q16 0 16 16v136q0 10-10 10h-76q-10 0-10-10z" fill="url(#glass)"/>
+        <path d="M200 252v118" stroke="#fff" stroke-opacity=".45" stroke-width="6" stroke-linecap="round"/>
+        <rect x="204" y="290" width="64" height="44" rx="4" fill="#F3EEE4" opacity=".92"/>
+        <path d="M216 306h40M222 318h28" stroke="#5B7054" stroke-width="2" stroke-linecap="round"/>
+        <rect x="212" y="200" width="48" height="26" rx="3" fill="#4F5F49"/>
+        <path d="M222 200q-6-50 14-58q20 8 14 58z" fill="url(#bulb)"/>
+        <!-- mugwort leaves -->
+        <g transform="translate(330 300)">
+          <path d="M0 80q10-60 50-110" stroke="#5B7054" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+          <g fill="#8A9D7C"><path d="M14 40q-30-6-40-30q30 0 40 30z"/><path d="M24 14q-28-10-34-34q28 4 34 34z"/><path d="M30 20q26-18 50-12q-18 22-50 12z"/><path d="M40-8q18-22 42-22q-12 24-42 22z"/></g>
+        </g>
+      </svg>
+    </div>
+    <aside class="note">
+      <h3>들어간 것</h3>
+      <dl><dt>강화 쑥 추출물</dt><dd class="num">62%</dd><dt>귀리 커널 오일</dt><dd class="num">4%</dd><dt>판테놀</dt><dd class="num">2%</dd></dl>
+    </aside>
+  </div>
+</section>
+
+<section class="after">
+  <svg class="curve" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 80C360 10 1080 10 1440 80z" fill="#EDE5D8"/></svg>
+  <div class="wrap">
+    <h2>피부 상태에 맞게 골라 보세요</h2>
+    <div class="trio" aria-hidden="true"><div></div><div style="background:#DCE3D3"></div><div style="background:#E8DCCB"></div></div>
+  </div>
+</section>
+</main>
+</body>
+</html>

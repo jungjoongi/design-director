@@ -1,0 +1,126 @@
+<!doctype html>
+<!-- base style: minimal + treatment: neumorphism
+     Neumorphism is confined to one object: the recorder "device" (its raised body, the decorative
+     input-level dial, and the inset well that groups settings). It is the "skeuomorphic audio
+     hardware" case from treatments.md. Every actual control inside it is conventional: the record
+     button is a solid fill with a text label, toggles and the segmented control carry 1.5px borders
+     at ≥3:1 against the surface, state is spelled out in text and color, and keyboard focus is a
+     visible 2px ring (shown on the first toggle). The rest of the page is plain minimal. -->
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>모아노트 — neumorphism</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root{
+    --bg:#E4E7EB; --hi:rgb(255 255 255 / .82); --lo:#BCC2CB;
+    --text:#1B1F24; --muted:#4F5661; --control:#5D6470; --accent:#2252C2; --rec:#C8372D;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--text)}
+  body{font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif;word-break:keep-all;-webkit-font-smoothing:antialiased;min-height:900px}
+  .wrap{width:1440px;margin:0 auto;padding:0 96px}
+  nav{height:80px;display:flex;align-items:center;justify-content:space-between}
+  .brand{font-weight:700;font-size:18px;letter-spacing:-.02em}
+  .links{display:flex;gap:36px;font-size:15px;color:var(--muted)}
+  .login{font-size:15px;font-weight:600}
+  main{display:grid;grid-template-columns:1fr 600px;gap:96px;align-items:center;height:820px;padding-bottom:40px}
+  h1{font-size:56px;line-height:1.22;letter-spacing:-.03em;font-weight:700}
+  .lede{margin-top:28px;font-size:19px;line-height:1.7;color:var(--muted);max-width:30em;letter-spacing:-.01em}
+  .actions{margin-top:40px;display:flex;gap:12px}
+  .btn{display:inline-flex;align-items:center;height:52px;padding:0 24px;border-radius:10px;font-size:16px;font-weight:600;text-decoration:none;color:var(--text)}
+  .btn-primary{background:var(--text);color:#fff}
+  .btn-line{border:1.5px solid var(--control)}
+  .facts{margin-top:56px;display:flex;gap:48px;font-size:15px;line-height:1.6;color:var(--muted)}
+  .facts b{display:block;color:var(--text);font-size:16px;font-weight:600}
+
+  /* ---- the one neumorphic object ---- */
+  .device{background:var(--bg);border-radius:36px;padding:40px 44px 36px;
+          box-shadow:-14px -14px 30px var(--hi),14px 14px 30px var(--lo)}
+  .d-top{display:flex;align-items:center;gap:40px}
+  .dial{width:200px;height:200px;border-radius:50%;flex:none;position:relative;
+        box-shadow:-9px -9px 20px var(--hi),9px 9px 20px var(--lo)}
+  .dial svg{position:absolute;inset:0}
+  .dial .val{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+  .dial .val b{font-size:34px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .dial .val span{font-size:13px;color:var(--muted);margin-top:2px}
+  .rec-col{flex:1}
+  .status{font-size:14px;color:var(--muted)}
+  .timer{font-size:44px;font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums;margin-top:4px}
+  .rec{margin-top:20px;display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 24px;border-radius:26px;
+       background:var(--rec);color:#fff;font-size:16px;font-weight:650;border:0}
+  .rec i{width:12px;height:12px;border-radius:50%;background:#fff}
+
+  .well{margin-top:36px;border-radius:22px;padding:8px 24px;box-shadow:inset 6px 6px 14px var(--lo),inset -6px -6px 14px var(--hi)}
+  .row{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid #CDD2D9}
+  .row:last-child{border-bottom:0}
+  .row .l b{display:block;font-size:16px;font-weight:600}
+  .row .l span{font-size:13px;color:var(--muted)}
+  .sw{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600}
+  .toggle{width:52px;height:30px;border-radius:15px;border:1.5px solid var(--control);position:relative;background:#F4F5F7}
+  .toggle::after{content:"";position:absolute;top:3px;left:3px;width:21px;height:21px;border-radius:50%;background:var(--control)}
+  .toggle.on{background:var(--accent);border-color:var(--accent)}
+  .toggle.on::after{left:24px;background:#fff}
+  .is-focus{outline:2px solid var(--accent);outline-offset:3px}
+  .seg{display:flex;border:1.5px solid var(--control);border-radius:10px;overflow:hidden;background:#F4F5F7}
+  .seg span{padding:7px 14px;font-size:14px;font-weight:600;color:var(--muted)}
+  .seg span+span{border-left:1.5px solid var(--control)}
+  .seg .sel{background:var(--text);color:#fff}
+  .hint{margin-top:18px;font-size:13px;color:var(--muted);text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <div class="brand">모아노트</div>
+    <div class="links"><a>기능</a><a>요금</a><a>도움말</a></div>
+    <a class="login">로그인</a>
+  </nav>
+  <main>
+    <section>
+      <h1>버튼 하나 누르면<br>회의록까지 끝납니다</h1>
+      <p class="lede">회의실 노트북에 모아노트를 켜 두세요. 녹음이 끝나면 말한 사람별로 정리하고, 정해진 일과 할 일을 팀 채널에 남깁니다.</p>
+      <div class="actions"><a class="btn btn-primary" href="#">무료로 써 보기</a><a class="btn btn-line" href="#">예시 회의록 보기</a></div>
+      <div class="facts">
+        <p><b>설정은 한 번만</b>다음 회의부터 그대로 씁니다</p>
+        <p><b>녹음 파일은 30일 뒤 삭제</b>요약과 할 일만 남깁니다</p>
+      </div>
+    </section>
+
+    <section class="device" aria-label="녹음기">
+      <div class="d-top">
+        <div class="dial" aria-hidden="true">
+          <svg viewBox="0 0 200 200" width="200" height="200">
+            <circle cx="100" cy="100" r="76" fill="none" stroke="#CDD2D9" stroke-width="10" stroke-linecap="round" stroke-dasharray="358 120" transform="rotate(135 100 100)"/>
+            <circle cx="100" cy="100" r="76" fill="none" stroke="#2252C2" stroke-width="10" stroke-linecap="round" stroke-dasharray="226 252" transform="rotate(135 100 100)"/>
+          </svg>
+          <div class="val"><b>−12</b><span>입력 레벨 dB</span></div>
+        </div>
+        <div class="rec-col">
+          <p class="status">마이크 준비됨 · 회의실 B</p>
+          <p class="timer">00:00:00</p>
+          <button class="rec" type="button"><i aria-hidden="true"></i>녹음 시작</button>
+        </div>
+      </div>
+
+      <div class="well">
+        <div class="row">
+          <div class="l"><b>말한 사람 나누기</b><span>목소리로 참석자를 구분합니다</span></div>
+          <div class="sw"><span>켜짐</span><span class="toggle on is-focus" role="switch" aria-checked="true" aria-label="말한 사람 나누기"></span></div>
+        </div>
+        <div class="row">
+          <div class="l"><b>요약 길이</b><span>팀 채널에 올라갈 분량</span></div>
+          <div class="seg" role="radiogroup" aria-label="요약 길이"><span>짧게</span><span class="sel">보통</span><span>자세히</span></div>
+        </div>
+        <div class="row">
+          <div class="l"><b>끝나면 바로 공유</b><span>#제품팀 채널에 올립니다</span></div>
+          <div class="sw"><span>꺼짐</span><span class="toggle" role="switch" aria-checked="false" aria-label="끝나면 바로 공유"></span></div>
+        </div>
+      </div>
+      <p class="hint">녹음 중에도 설정을 바꿀 수 있습니다</p>
+    </section>
+  </main>
+</div>
+</body>
+</html>

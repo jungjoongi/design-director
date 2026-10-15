@@ -1,0 +1,106 @@
+<!doctype html>
+<!-- base style: organic-soft + treatment: grain-noise
+     Grain is one layer of SVG feTurbulence (baseFrequency .82, grayscale, contrast-boosted) used where it has a job:
+     on the wide flat page ground (4%, multiply) and on the large moss gradient field (8%, overlay),
+     where it also breaks up gradient banding. It sits *under* content (z-index), so it never lies on
+     top of text, and the paper note is opaque and grain-free. No blobs for the grain to dress up. -->
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>모아노트 — grain-noise</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root{
+    --ground:#ECEAE4; --ink:#22251F; --muted:#575B52; --line:#D3D0C7;
+    --moss-1:#33433A; --moss-2:#4C5F50; --paper:#FBFAF6; --sage:#8FA38C; --accent:#3D5A45;
+    --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3' intercept='-1'/%3E%3CfeFuncG type='linear' slope='3' intercept='-1'/%3E%3CfeFuncB type='linear' slope='3' intercept='-1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{background:var(--ground)}
+  body{background:var(--ground);color:var(--ink);font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif;word-break:keep-all;-webkit-font-smoothing:antialiased;min-height:900px;position:relative}
+  /* page-ground grain: fixed, behind content, never over text */
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background-image:var(--grain);opacity:.05;mix-blend-mode:multiply}
+  .wrap{position:relative;z-index:1;width:1440px;margin:0 auto;padding:0 80px}
+  nav{height:84px;display:flex;align-items:center;justify-content:space-between}
+  .brand{font-weight:700;font-size:19px;letter-spacing:-.02em}
+  .links{display:flex;gap:36px;font-size:15px;color:var(--muted)}
+  .login{font-size:15px;font-weight:600}
+  main{display:grid;grid-template-columns:520px 1fr;gap:72px;align-items:center;height:784px;padding-bottom:28px}
+  h1{font-size:56px;line-height:1.24;letter-spacing:-.03em;font-weight:650}
+  .lede{margin-top:28px;font-size:19px;line-height:1.75;color:var(--muted);letter-spacing:-.01em}
+  .actions{margin-top:40px;display:flex;gap:12px}
+  .btn{display:inline-flex;align-items:center;height:52px;padding:0 26px;border-radius:26px;font-size:16px;font-weight:600;color:var(--ink);text-decoration:none}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-line{border:1.5px solid #9B9E94}
+  .quiet{margin-top:56px;font-size:14px;line-height:1.7;color:var(--muted);max-width:26em}
+
+  /* the wide gradient field — where grain earns its place */
+  .field{position:relative;height:720px;border-radius:32px;overflow:hidden;isolation:isolate;
+         background:linear-gradient(160deg,var(--moss-2) 0%,var(--moss-1) 70%)}
+  .field::before{content:"";position:absolute;inset:0;z-index:0;background-image:var(--grain);opacity:.08;mix-blend-mode:overlay;pointer-events:none}
+  .field-cap{position:absolute;left:48px;top:44px;z-index:1;color:#E6EBE3;font-size:15px;line-height:1.6}
+  .field-cap b{display:block;font-size:22px;font-weight:600;letter-spacing:-.02em;color:#F5F7F2}
+  .today{list-style:none;margin-top:28px;width:360px}
+  .today li{display:flex;justify-content:space-between;padding:12px 0;border-top:1px solid rgb(255 255 255 / .18);font-size:15px;color:#DCE3DA;font-variant-numeric:tabular-nums}
+  .today li.on{color:#fff;font-weight:600}
+  .paper{position:absolute;z-index:1;left:48px;right:48px;bottom:48px;background:var(--paper);border-radius:18px;padding:36px 40px;
+         box-shadow:0 30px 60px -20px rgb(20 28 22 / .5)}
+  .p-head{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:20px;border-bottom:1px solid var(--line)}
+  .p-head h2{font-size:24px;letter-spacing:-.02em;font-weight:650}
+  .p-head span{font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
+  .cols{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;margin-top:24px}
+  h3{font-size:14px;font-weight:600;color:var(--accent);margin-bottom:12px}
+  .decide li{list-style:none;font-size:16px;line-height:1.6;padding:8px 0;border-bottom:1px dashed var(--line)}
+  .decide li:last-child{border-bottom:0}
+  .todo li{list-style:none;display:grid;grid-template-columns:20px 1fr;gap:12px;font-size:16px;line-height:1.5;padding:8px 0}
+  .box{width:18px;height:18px;border:1.5px solid #6F7468;border-radius:5px;margin-top:2px}
+  .box.done{background:var(--accent);border-color:var(--accent);position:relative}
+  .box.done::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+  .todo small{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <div class="brand">모아노트</div>
+    <div class="links"><a>기능</a><a>요금</a><a>도움말</a></div>
+    <a class="login">로그인</a>
+  </nav>
+  <main>
+    <section>
+      <h1>한 시간 회의를<br>한 장으로 남깁니다</h1>
+      <p class="lede">녹음을 올려 두면 모아노트가 끝까지 듣고, 정해진 일과 할 일만 종이&nbsp;한&nbsp;장 분량으로 정리합니다. 다시 들을 필요가 없게요.</p>
+      <div class="actions"><a class="btn btn-primary" href="#">무료로 써 보기</a><a class="btn btn-line" href="#">예시 회의록 보기</a></div>
+      <p class="quiet">녹음 원본은 30일 뒤 지워지고, 요약은 팀 안에서만 볼 수 있습니다.</p>
+    </section>
+
+    <section class="field" aria-label="회의록 예시">
+      <div class="field-cap"><b>오늘의 회의록</b>3개 회의, 2시간 14분을 들었습니다
+        <ol class="today"><li><span>고객 인터뷰</span><span>34분</span></li><li><span>디자인 리뷰</span><span>52분</span></li><li class="on"><span>주간 제품 회의</span><span>48분</span></li></ol></div>
+      <article class="paper">
+        <div class="p-head"><h2>주간 제품 회의</h2><span>10월 14일 · 48분 · 4명</span></div>
+        <div class="cols">
+          <div class="decide">
+            <h3>정해진 일</h3>
+            <ul>
+              <li>출시일을 11월 4일로 한 주 미룹니다.</li>
+              <li>기존 사용자에게는 메일로 먼저 알립니다.</li>
+              <li>요금 개편은 다음 분기에 다시 봅니다.</li>
+            </ul>
+          </div>
+          <div class="todo">
+            <h3>할 일</h3>
+            <ul>
+              <li><span class="box done"></span><span>결제 모듈 QA 일정 공유<small>박도윤 · 완료</small></span></li>
+              <li><span class="box"></span><span>공지 문구 고치기<small>이하린 · 금요일까지</small></span></li>
+              <li><span class="box"></span><span>지원팀 안내 자료 정리<small>정민재 · 다음 주 월요일</small></span></li>
+            </ul>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+</div>
+</body>
+</html>

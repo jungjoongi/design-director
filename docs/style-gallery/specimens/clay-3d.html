@@ -1,0 +1,108 @@
+<!doctype html>
+<!-- base style: playful-illustrative + treatment: clay-3d
+     One clay render for the whole screen, and it depicts the product: a microphone standing in front
+     of a finished meeting note (recording → note). Built from simple inline-SVG shapes with one
+     material (matte, no specular glints), one light (top-left), one camera, and a 3-pastel palette
+     drawn from the brand mint plus apricot and paper. No floating spheres, blobs or droplets. -->
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>모아노트 — clay-3d</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root{--bg:#F2F6F3; --ink:#1D2A25; --muted:#4D5C55; --brand:#23735F; --brand-ink:#0F3B31; --line:#D5E1DA}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink)}
+  body{font-family:"Pretendard Variable",Pretendard,system-ui,sans-serif;word-break:keep-all;-webkit-font-smoothing:antialiased;min-height:900px}
+  .wrap{width:1440px;margin:0 auto;padding:0 96px}
+  nav{height:84px;display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:-.02em}
+  .brand i{width:26px;height:26px;border-radius:9px;background:var(--brand)}
+  .links{display:flex;gap:36px;font-size:15px;color:var(--muted);font-weight:500}
+  .login{font-size:15px;font-weight:700;height:40px;padding:0 18px;border-radius:20px;border:2px solid var(--ink);display:inline-flex;align-items:center}
+  main{display:grid;grid-template-columns:1fr 560px;gap:64px;align-items:center;height:780px;padding-bottom:40px}
+  h1{font-size:60px;line-height:1.22;letter-spacing:-.03em;font-weight:800}
+  .lede{margin-top:28px;font-size:20px;line-height:1.7;color:var(--muted);max-width:28em;letter-spacing:-.01em}
+  .actions{margin-top:40px;display:flex;gap:12px;align-items:center}
+  .btn{display:inline-flex;align-items:center;height:56px;padding:0 28px;border-radius:28px;font-size:17px;font-weight:700;text-decoration:none;color:var(--ink)}
+  .btn-primary{background:var(--brand);color:#fff}
+  .btn-text{text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:2px;padding:0 12px}
+  .chips{margin-top:56px;display:flex;gap:10px;flex-wrap:wrap}
+  .chips span{font-size:15px;font-weight:600;padding:10px 16px;border-radius:999px;background:#fff;border:1.5px solid var(--line);color:var(--ink)}
+  figure{position:relative}
+  figcaption{text-align:center;font-size:14px;color:var(--muted);margin-top:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <div class="brand"><i aria-hidden="true" style="background:#5BB89E"></i>모아노트</div>
+    <div class="links"><a>기능</a><a>요금</a><a>도움말</a></div>
+    <a class="login">로그인</a>
+  </nav>
+  <main>
+    <section>
+      <h1>회의가 끝나면<br>메모가 먼저 와 있어요</h1>
+      <p class="lede">녹음 버튼만 눌러 두세요. 누가 무슨 말을 했는지, 무엇을 정했고 누가 할&nbsp;일인지 모아노트가 한 장으로 적어 둡니다.</p>
+      <div class="actions"><a class="btn btn-primary" href="#">무료로 써 보기</a><a class="btn btn-text" href="#">예시 회의록 보기</a></div>
+      <div class="chips"><span>말한 사람 나누기</span><span>정해진 일만 따로</span><span>할 일과 마감일</span><span>팀 채널로 보내기</span></div>
+    </section>
+
+    <figure>
+      <svg viewBox="0 0 520 500" width="560" height="538" role="img" aria-label="점토로 빚은 마이크와 회의 메모">
+        <defs>
+          <radialGradient id="mint" cx=".32" cy=".26" r=".85">
+            <stop offset="0" stop-color="#D3F1E6"/><stop offset=".5" stop-color="#A8DCC9"/><stop offset="1" stop-color="#78B9A2"/>
+          </radialGradient>
+          <radialGradient id="apri" cx=".3" cy=".25" r=".9">
+            <stop offset="0" stop-color="#FFE3CA"/><stop offset=".55" stop-color="#F7C399"/><stop offset="1" stop-color="#E2A06F"/>
+          </radialGradient>
+          <linearGradient id="apriStem" x1="0" x2="1">
+            <stop offset="0" stop-color="#FAD3B0"/><stop offset=".6" stop-color="#F0B484"/><stop offset="1" stop-color="#D99362"/>
+          </linearGradient>
+          <radialGradient id="paper" cx=".28" cy=".2" r="1">
+            <stop offset="0" stop-color="#FFFEFB"/><stop offset=".6" stop-color="#FAF2E6"/><stop offset="1" stop-color="#E9DCC8"/>
+          </radialGradient>
+          <filter id="soft" x="-30%" y="-80%" width="160%" height="260%"><feGaussianBlur stdDeviation="14"/></filter>
+          <filter id="soft4"><feGaussianBlur stdDeviation="5"/></filter>
+        </defs>
+
+        <!-- ground shadows (light from top-left → shadows fall bottom-right) -->
+        <ellipse cx="300" cy="452" rx="190" ry="24" fill="#3E6658" opacity=".22" filter="url(#soft)"/>
+        <ellipse cx="178" cy="452" rx="92" ry="16" fill="#3E6658" opacity=".28" filter="url(#soft4)"/>
+
+        <!-- meeting note slab -->
+        <g transform="rotate(-7 330 260)">
+          <rect x="214" y="104" width="252" height="304" rx="36" fill="#D8C4A6"/>
+          <rect x="206" y="90" width="252" height="304" rx="36" fill="url(#paper)"/>
+          <rect x="242" y="134" width="132" height="22" rx="11" fill="url(#mint)"/>
+          <rect x="242" y="180" width="180" height="14" rx="7" fill="#E8D8C2"/>
+          <rect x="242" y="208" width="156" height="14" rx="7" fill="#E8D8C2"/>
+          <rect x="242" y="236" width="170" height="14" rx="7" fill="#E8D8C2"/>
+          <circle cx="254" cy="292" r="13" fill="url(#mint)"/>
+          <path d="M248 292 l5 5 l9 -10" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="278" y="285" width="128" height="14" rx="7" fill="#E8D8C2"/>
+          <circle cx="254" cy="334" r="13" fill="none" stroke="#C9B497" stroke-width="4"/>
+          <rect x="278" y="327" width="104" height="14" rx="7" fill="#E8D8C2"/>
+        </g>
+
+        <!-- microphone -->
+        <ellipse cx="178" cy="440" rx="80" ry="22" fill="#D3915F"/>
+        <ellipse cx="178" cy="428" rx="80" ry="22" fill="url(#apri)"/>
+        <rect x="166" y="312" width="24" height="118" rx="12" fill="url(#apriStem)"/>
+        <path d="M112 236 a66 66 0 0 0 132 0" fill="none" stroke="#D99362" stroke-width="18" stroke-linecap="round" transform="translate(2 4)"/>
+        <path d="M112 236 a66 66 0 0 0 132 0" fill="none" stroke="url(#apriStem)" stroke-width="18" stroke-linecap="round"/>
+        <rect x="124" y="92" width="108" height="186" rx="54" fill="url(#mint)"/>
+        <rect x="146" y="150" width="64" height="9" rx="4.5" fill="#86C5AF"/>
+        <rect x="142" y="174" width="72" height="9" rx="4.5" fill="#86C5AF"/>
+        <rect x="142" y="198" width="72" height="9" rx="4.5" fill="#86C5AF"/>
+        <rect x="146" y="222" width="64" height="9" rx="4.5" fill="#86C5AF"/>
+        <ellipse cx="154" cy="128" rx="14" ry="22" fill="#FFFFFF" opacity=".22" filter="url(#soft4)"/>
+      </svg>
+      <figcaption>녹음이 끝나면 회의록 한 장이 남습니다</figcaption>
+    </figure>
+  </main>
+</div>
+</body>
+</html>
