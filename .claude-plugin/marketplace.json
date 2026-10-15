@@ -10,7 +10,7 @@
     {
       "name": "design-director",
       "source": "./plugins/design-director",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "design",
       "description": "마음에 드는 사이트·스크린샷·스타일을 측정 가능한 디자인 언어로 분석하고(ref), 그걸로 화면을 기획·브리프·적용·검증한다(direct). '좀 이쁘게 해줘'를 이름 붙은 방향과 수치로 바꾼다.",
       "keywords": ["design", "ui", "reference", "design-tokens", "design-brief", "landing-page", "tailwind", "korean"]

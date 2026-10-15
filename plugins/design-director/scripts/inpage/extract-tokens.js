@@ -31,6 +31,13 @@
     if (cps.length > n) s = cps.slice(0, Math.max(0, n - 1)).join('').trim() + '…';
     return s;
   }
+  // 폰트 이름은 사이트가 아무 문자열이나 넣을 수 있다(font-family: "아무 문장"). 이름에 쓰는 글자만 남기고,
+  // 이름 하나는 32자, 스택은 앞 4개까지만 내보낸다.
+  function safeFamily(stack) {
+    return String(stack == null ? '' : stack).split(',').slice(0, 4).map(function (x) {
+      return clean(x.replace(/["']/g, '').replace(/[^\p{L}\p{N}\s.-]/gu, ''), 32);
+    }).filter(Boolean).join(', ');
+  }
 
   // ── 색: 계산값 문자열 → {r,g,b,a}. rgb() 는 바로, oklch·lab·color() 는 1×1 캔버스로 sRGB 변환
   var colorCache = {};
@@ -201,7 +208,7 @@
 
   // 글자 뒤에 이미지·영상·캔버스가 겹쳐 있나(형제로 깔린 히어로 영상 위 흰 글씨 등).
   // 조상 배경색만으로는 배경을 알 수 없으니 대비로 걸러내면 안 된다.
-  var MEDIA_SEL = 'img,video,canvas,picture,svg,iframe';
+  var MEDIA_SEL = 'img,video,canvas,picture,svg';
   var mediaCache = new Map();
   function mediaBehind(el) {
     if (mediaCache.has(el)) return mediaCache.get(el);
@@ -215,7 +222,10 @@
         var m = ms[j];
         if (m === el || el.contains(m) || !visible(m)) continue;
         var mr = rect(m);
-        if (mr.w > 0 && mr.h > 0 && mr.x < r.r && mr.r > r.x && mr.y < r.b && mr.b > r.y) { found = true; break; }
+        if (mr.w < 48 || mr.h < 48) continue; // 1px 투명 이미지로 대비 판정을 피하는 걸 막는다
+        var ow = Math.min(mr.r, r.r) - Math.max(mr.x, r.x);
+        var oh = Math.min(mr.b, r.b) - Math.max(mr.y, r.y);
+        if (ow > 0 && oh > 0 && ow * oh >= 0.5 * r.w * r.h) { found = true; break; }
       }
     }
     mediaCache.set(el, found);
@@ -334,7 +344,7 @@
       var lhRaw = s.lineHeight;
       var lh = lhRaw === 'normal' ? 'normal' : r2(parseFloat(lhRaw) / size);
       var ls = s.letterSpacing === 'normal' ? 0 : Math.round((parseFloat(s.letterSpacing) / size) * 1000) / 1000;
-      var fam = String(s.fontFamily).slice(0, 120);
+      var fam = safeFamily(s.fontFamily);
       var w = parseInt(s.fontWeight, 10) || 400;
       var tt = s.textTransform === 'none' ? '' : s.textTransform;
       var it = s.fontStyle === 'italic' || s.fontStyle.indexOf('oblique') === 0 ? 1 : 0;
@@ -394,7 +404,7 @@
     var fam = {};
     if (document.fonts && document.fonts.forEach) {
       document.fonts.forEach(function (ff) {
-        var name = clean(String(ff.family).replace(/^["']|["']$/g, ''), 60);
+        var name = safeFamily(ff.family);
         if (!name) return;
         var f = fam[name] || (fam[name] = { f: name, n: 0, loaded: 0, w: [] });
         f.n++;
@@ -427,7 +437,7 @@
         var re = /family=([^&:;]+)/g;
         var g;
         while ((g = re.exec(href)) && fonts.googleFamilies.length < 10) {
-          var nm = clean(decodeURIComponent(g[1].replace(/\+/g, ' ')).replace(/[^\w\s-]/g, ''), 40);
+          var nm = clean(decodeURIComponent(g[1].replace(/\+/g, ' ')).replace(/[^\w\s-]/g, ''), 32);
           if (nm && fonts.googleFamilies.indexOf(nm) < 0) fonts.googleFamilies.push(nm);
         }
       }
@@ -449,6 +459,14 @@
       if (/(sans-serif|serif|monospace|system-ui|-apple-system|"[^"]+"\s*,)/.test(v)) return 'font';
       return 'other';
     };
+    // 앞부분만 보고 타입을 정하면 `rgb( 아무 문장 )` 같은 값이 색으로 통과한다. 값 전체가 숫자·단위·색 함수·
+    // 허용 낱말로만 이뤄졌을 때만 원문을 내보내고, 색은 원문 대신 hex 로 바꿔 내보낸다.
+    var SAFE_WORDS = /^(px|rem|em|vh|vw|ch|dvh|svh|lvh|vmin|vmax|ex|deg|turn|rad|ms|s|calc|clamp|min|max|var|rgb|rgba|hsl|hsla|oklch|oklab|lab|lch|color|hwb|srgb|display-p3|from|none|inset|transparent|currentcolor|cubic-bezier|ease|ease-in|ease-out|ease-in-out|linear|steps|start|end|jump-start|jump-end|jump-none|jump-both)$/i;
+    var onlySafeWords = function (v) {
+      if (!/^[\w\s#().,%+*\/-]+$/.test(v)) return false;
+      var words = v.replace(/--[\w-]+/g, ' ').match(/[a-z][a-z0-9-]*/gi) || [];
+      return words.every(function (w) { return SAFE_WORDS.test(w) || NAMED.test(w); });
+    };
     var collected = {};
     var addVar = function (name, value) {
       if (collected[name] !== undefined) return;
@@ -468,7 +486,11 @@
     var items = names.map(function (nm) {
       var v = collected[nm];
       var t = typeOf(v);
-      var keep = t === 'other' ? '' : t === 'font' ? clean(v.replace(/[^\w\s,'".-]/g, ''), 80) : clean(v, 80);
+      var keep = '';
+      if (t === 'font') keep = safeFamily(v);
+      else if (t === 'color' && onlySafeWords(v)) { var pc = parseColor(v); keep = pc ? hex(pc) : ''; if (!keep) t = 'other'; }
+      else if (t !== 'other' && onlySafeWords(v)) keep = clean(v, 80);
+      else t = 'other';
       return { n: clean(nm.replace(/[^\w-]/g, ''), 48), v: keep, t: t };
     }).filter(function (x) { return x.n; });
     items.sort(function (a, b) { return ORDER[a.t] - ORDER[b.t] || (a.n < b.n ? -1 : 1); });
