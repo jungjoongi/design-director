@@ -8,6 +8,8 @@
 끊지 않는 데서 시작한다. AI 가 커뮤니티를 만들면 이 관례를 모르고 SaaS 카드 피드로 바꾸는 일이 많은데(KR-6), 그러면 한 화면에
 보이는 글이 15–20개에서 4–5개로 줄고 스캔이 죽는다.
 
+어울리는 스타일: 목록형 게시판은 `kr-board-classic`, 사진 피드는 `kr-local-feed`, Q&A·토론은 `forum-thread`, 학습·친근한 모임은 `playful-illustrative` (`${CLAUDE_PLUGIN_ROOT}/references/styles/_index.md`).
+
 ## 목차
 1. 하위 유형 (Subtypes)
 2. 섹션 순서와 이유

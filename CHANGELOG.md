@@ -3,6 +3,14 @@
 이 프로젝트는 [Semantic Versioning](https://semver.org/lang/ko/) 을 따른다.
 버전은 `plugins/design-director/.claude-plugin/plugin.json` 과 `.claude-plugin/marketplace.json` 에 함께 적는다.
 
+## 0.2.0 — 2026-10-15
+
+- 스타일 6종을 더한다(기본 스타일 18종). 어드민: `admin-calm`(차분한 어드민), `admin-console`(다크 콘솔),
+  `kr-admin-classic`(한국형 관리자). 커뮤니티: `kr-board-classic`(한국형 게시판), `kr-local-feed`(동네 피드형),
+  `forum-thread`(스레드형 포럼). 카탈로그 인덱스의 별칭·판별 힌트와 SaaS 앱·커뮤니티 구조 패턴에 연결한다.
+- 스타일 갤러리: 스타일 18종 + 트리트먼트 5종의 견본과 이미지를 용도별(랜딩·브랜드, 어드민, 커뮤니티, 앱·커머스)로 정리한다.
+- README 를 다시 짠다.
+
 ## 0.1.2 — 2026-10-15
 
 - 보안: CSS 변수 값 검사에서 `calc(--…)`·`var(--…)` 로 낱말 검사를 피하던 우회를 막는다(`var(--이름)` 은 `var(--ref)` 로 가린다).

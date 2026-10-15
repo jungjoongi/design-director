@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>useEffect 안의 fetch가 두 번 호출돼요 — 코드우물</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root {
+    --bg: #FFFFFF; --page: #F4F6F9; --sunk: #EEF1F5; --line: #E0E5EC; --line-2: #C8D0DB; --guide: #D3DAE3;
+    --text: #1A2230; --text-2: #4B5566; --text-3: #5F6978;
+    --link: #2556C9; --link-tint: #EAF0FB;
+    --ok: #18794A; --ok-tint: #EAF5EE;
+    --code-bg: #F3F5F8;
+    --sans: "Pretendard Variable", Pretendard, -apple-system, system-ui, sans-serif;
+    --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Pretendard Variable", monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html:lang(ko) { word-break: keep-all; overflow-wrap: break-word; }
+  body { font-family: var(--sans); background: var(--page); color: var(--text); font-size: 15px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  a { color: var(--link); text-decoration: none; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  .num { font-variant-numeric: tabular-nums; }
+  :focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+  svg { display: block; flex: none; }
+  code { font-family: var(--mono); font-size: 13px; background: var(--code-bg); padding: 1px 5px; border-radius: 4px; }
+  pre { font-family: var(--mono); font-size: 13px; line-height: 1.55; background: var(--code-bg); border: 1px solid var(--line); border-radius: 6px; padding: 10px 14px; margin: 8px 0 0; overflow-x: auto; color: #243042; }
+  pre .k { color: #8A3FB8; } pre .s { color: #1D7A4C; } pre .c { color: #667085; } pre .f { color: #2556C9; }
+
+  .top { height: 56px; background: var(--bg); border-bottom: 1px solid var(--line); }
+  .top .in { width: 1256px; margin: 0 auto; height: 100%; display: flex; align-items: center; gap: 24px; }
+  .logo { font-weight: 800; font-size: 18px; letter-spacing: -0.02em; color: var(--text); display: flex; align-items: center; gap: 8px; width: 196px; }
+  .logo i { width: 22px; height: 22px; border-radius: 6px; border: 2px solid var(--link); display: grid; place-items: center; }
+  .logo i::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--link); }
+  .q { flex: 0 0 520px; height: 36px; border: 1px solid var(--line-2); border-radius: 6px; display: flex; align-items: center; gap: 8px; padding: 0 12px; font-size: 14px; color: var(--text-3); }
+  .q kbd { margin-left: auto; font-family: var(--sans); font-size: 12px; border: 1px solid var(--line-2); border-radius: 4px; padding: 0 5px; }
+  .top .right { margin-left: auto; display: flex; align-items: center; gap: 14px; font-size: 14px; color: var(--text-2); }
+  .ask { height: 36px; padding: 0 14px; border-radius: 6px; background: var(--link); color: #fff; font-weight: 600; font-size: 14px; }
+  .av { width: 28px; height: 28px; border-radius: 50%; display: inline-grid; place-items: center; font-size: 12px; font-weight: 700; flex: none; }
+
+  .wrap { width: 1256px; margin: 0 auto; display: grid; grid-template-columns: 196px minmax(0, 1fr) 264px; gap: 28px; padding-top: 20px; }
+  .cats { font-size: 14px; position: sticky; top: 20px; align-self: start; }
+  .cats h4, .side h4 { font-size: 12px; font-weight: 600; color: var(--text-3); margin: 0 10px 6px; }
+  .cats a { display: flex; justify-content: space-between; height: 34px; align-items: center; padding: 0 10px; border-radius: 6px; color: var(--text-2); }
+  .cats a span { font-size: 12px; color: var(--text-3); }
+  .cats a.on { background: var(--bg); color: var(--text); font-weight: 600; box-shadow: inset 0 0 0 1px var(--line); }
+  .cats a.on span { color: var(--link); }
+  .cats hr { border: 0; border-top: 1px solid var(--line); margin: 12px 10px; }
+
+  .main { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 20px 28px 8px; }
+  .crumb { font-size: 13px; color: var(--text-3); }
+  h1 { font-size: 24px; line-height: 1.35; font-weight: 700; letter-spacing: -0.02em; margin: 4px 0 6px; text-wrap: balance; }
+  .qmeta { display: flex; align-items: center; gap: 16px; font-size: 13px; color: var(--text-3); padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+  .qmeta b { color: var(--text-2); font-weight: 500; }
+  .solved { color: var(--ok); font-weight: 600; display: inline-flex; gap: 4px; align-items: center; }
+  .post { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 16px; padding: 14px 0; }
+  .vote { display: flex; flex-direction: column; align-items: center; gap: 2px; color: var(--text-3); }
+  .vote button { width: 36px; height: 30px; border-radius: 6px; border: 1px solid var(--line); display: grid; place-items: center; }
+  .vote button.on { border-color: var(--link); color: var(--link); background: var(--link-tint); }
+  .vote b { font-size: 18px; font-weight: 600; color: var(--text); line-height: 1.6; }
+  .vote .acc { margin-top: 6px; color: var(--ok); }
+  .body p + p { margin-top: 6px; }
+  .tags { display: flex; gap: 6px; margin-top: 12px; }
+  .tag { height: 24px; padding: 0 8px; border-radius: 4px; background: var(--link-tint); color: #1F49AD; font-size: 12px; font-weight: 500; display: inline-flex; align-items: center; }
+  .by { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-3); margin-top: 12px; }
+  .by b { color: var(--text); font-weight: 600; }
+  .by .rep { color: var(--text-3); }
+  .by .acts { margin-left: auto; display: flex; gap: 14px; }
+  .by .acts button { font-size: 13px; color: var(--text-3); }
+
+  .ahead { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); padding: 12px 0 0; }
+  .ahead h2 { font-size: 17px; font-weight: 700; }
+  .sort { display: flex; gap: 2px; background: var(--sunk); border-radius: 6px; padding: 2px; font-size: 13px; }
+  .sort span { padding: 2px 10px; border-radius: 4px; color: var(--text-2); }
+  .sort span.on { background: var(--bg); color: var(--text); font-weight: 600; box-shadow: 0 0 0 1px var(--line); }
+  .accepted { margin-top: 12px; border-left: 3px solid var(--ok); padding-left: 0; }
+  .accepted .post { padding-left: 14px; padding-top: 8px; }
+  .acc-label { margin: 0 0 0 14px; padding-top: 4px; font-size: 13px; font-weight: 600; color: var(--ok); display: flex; align-items: center; gap: 6px; }
+  .acc-label span { font-weight: 400; color: var(--text-3); }
+
+  .tree { margin: 0 0 6px 78px; }
+  .tree .node { position: relative; padding-left: 20px; }
+  .tree .node::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--guide); }
+  .reply { padding: 6px 0 4px; font-size: 14px; line-height: 1.65; }
+  .reply .rh { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-3); }
+  .reply .rh b { color: var(--text); font-weight: 600; }
+  .op { font-size: 11px; font-weight: 700; color: var(--link); border: 1px solid #B9CBF2; border-radius: 3px; padding: 0 4px; line-height: 16px; }
+  .reply p { margin: 2px 0 0 36px; color: var(--text); }
+  .reply .ra { margin-left: 36px; display: flex; gap: 14px; font-size: 12px; color: var(--text-3); }
+  .more { margin-left: 36px; font-size: 13px; font-weight: 600; padding: 4px 0 8px; display: inline-block; }
+
+  .side { display: flex; flex-direction: column; gap: 14px; }
+  .box { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; font-size: 13px; }
+  .box h4 { margin: 0 0 8px; }
+  .kv { display: flex; justify-content: space-between; height: 28px; align-items: center; color: var(--text-2); }
+  .kv b { font-weight: 600; color: var(--text); }
+  .rel a { display: grid; grid-template-columns: 40px 1fr; gap: 8px; padding: 6px 0; line-height: 1.45; color: var(--link); font-size: 13px; }
+  .rel a span { height: 22px; border-radius: 4px; background: var(--sunk); color: var(--text-2); font-size: 12px; font-weight: 600; display: grid; place-items: center; }
+  .rel a span.ok { background: var(--ok-tint); color: var(--ok); }
+  .qmeta .who, .acc-label .who { display: inline-flex; align-items: center; gap: 6px; color: var(--text-3); font-weight: 400; }
+  .qmeta .who b, .acc-label .who b { color: var(--text); font-weight: 600; }
+  .qmeta .acts { margin-left: auto; display: flex; gap: 12px; }
+  .qmeta .acts button { font-size: 13px; color: var(--text-3); }
+  .av.sm { width: 22px; height: 22px; font-size: 11px; }
+  .reply .ra { display: block; margin-left: auto; font-size: 12px; color: var(--text-3); }
+  .reply p { margin: 0 0 0 30px; }
+  .more { margin-left: 30px !important; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<header class="top"><div class="in">
+  <a class="logo" href="#"><i></i>코드우물</a>
+  <label class="q"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/></svg>질문, 태그, 에러 메시지로 검색해 보세요<kbd>/</kbd></label>
+  <div class="right"><a href="#" style="color:inherit">태그</a><a href="#" style="color:inherit">사용자</a><button class="ask">질문하기</button><span class="av" style="background:#DCE4F2;color:#2A4A8A">민</span></div>
+</div></header>
+<div class="wrap">
+  <nav class="cats" aria-label="카테고리">
+    <h4>카테고리</h4>
+    <a href="#">전체 질문<span class="num">48,231</span></a>
+    <a class="on" href="#">프런트엔드<span class="num">12,904</span></a>
+    <a href="#">백엔드<span class="num">10,377</span></a>
+    <a href="#">데이터베이스<span class="num">4,512</span></a>
+    <a href="#">인프라·DevOps<span class="num">3,866</span></a>
+    <a href="#">모바일<span class="num">3,120</span></a>
+    <a href="#">AI·데이터<span class="num">5,048</span></a>
+    <a href="#">커리어·회고<span class="num">2,231</span></a>
+    <hr>
+    <h4>내 활동</h4>
+    <a href="#">내 질문<span class="num">14</span></a>
+    <a href="#">내 답변<span class="num">62</span></a>
+    <a href="#">북마크<span class="num">31</span></a>
+  </nav>
+  <main class="main">
+    <div class="crumb">프런트엔드 · React</div>
+    <h1>useEffect 안에서 fetch가 두 번 호출돼요. 개발 모드에서만 그런가요?</h1>
+    <div class="qmeta"><span class="solved"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="m2.5 7.2 3 3 6-6.4"/></svg>해결됨</span><span class="who"><span class="av sm" style="background:#E6E1F3;color:#4B3A8A">하</span><b>하루한커밋</b> 평판 <span class="num">312</span></span><span>질문 <b>2시간 전</b></span><span>조회 <b class="num">1,284</b></span><span class="acts"><button>북마크</button><button>공유</button><button>신고</button></span></div>
+    <div class="post">
+      <div class="vote"><button class="on" aria-label="추천"><svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 3 12 10H2z"/></svg></button><b class="num">24</b><button aria-label="비추천"><svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 11 2 4h10z"/></svg></button></div>
+      <div class="body">
+        <p>마운트할 때 목록을 불러오는데 네트워크 탭을 보면 <code>/api/posts</code> 요청이 항상 두 번 나가요. 의존성 배열은 비워 뒀어요.</p>
+<pre><span class="f">useEffect</span>(() =&gt; { <span class="f">getPosts</span>().<span class="f">then</span>(setPosts); }, []); <span class="c">// 요청이 두 번 나가요</span></pre>
+        <div class="tags"><span class="tag">react</span><span class="tag">react-18</span><span class="tag">useeffect</span><span class="tag">strict-mode</span></div>
+      </div>
+    </div>
+    <div class="ahead"><h2>답변 <span class="num">3</span></h2><div class="sort"><span class="on">채택·추천순</span><span>최신순</span></div></div>
+    <section class="accepted">
+      <div class="acc-label"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6.5" stroke-width="1.5"/><path d="m5 8.2 2 2 4-4.4"/></svg>채택된 답변 <span class="who"><span class="av sm" style="background:#DCEDE3;color:#1E6A42">숲</span><b>숲속의렌더러</b> 평판 <span class="num">8,940</span> · 1시간 30분 전</span></div>
+      <div class="post">
+        <div class="vote"><button aria-label="추천"><svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 3 12 10H2z"/></svg></button><b class="num">57</b><button aria-label="비추천"><svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 11 2 4h10z"/></svg></button></div>
+        <div class="body">
+          <p>React 18의 <code>StrictMode</code>는 개발 모드에서 effect를 일부러 마운트 → 정리 → 다시 마운트해요. 정리 함수에서 요청을 취소하면 한 번만 반영되고, 운영 빌드에서는 처음부터 한 번만 실행돼요.</p>
+<pre><span class="f">useEffect</span>(() =&gt; {
+  <span class="k">const</span> ctrl = <span class="k">new</span> <span class="f">AbortController</span>();
+  <span class="f">getPosts</span>(ctrl.signal).<span class="f">then</span>(setPosts);
+  <span class="k">return</span> () =&gt; ctrl.<span class="f">abort</span>(); <span class="c">// 다시 마운트되기 전에 첫 요청 취소</span>
+}, []);</pre>
+        </div>
+      </div>
+      <div class="tree">
+        <div class="node">
+          <div class="reply"><div class="rh"><span class="av sm" style="background:#E6E1F3;color:#4B3A8A">하</span><b>하루한커밋</b><span class="op">질문자</span>· 1시간 전<span class="ra">추천 <span class="num">3</span> · 답글</span></div><p>운영 빌드로 확인해 보니 정말 한 번만 나가네요. 개발 중엔 두 번 나가는 걸 감안하면 될까요?</p></div>
+          <div class="node">
+            <div class="reply"><div class="rh"><span class="av sm" style="background:#DCEDE3;color:#1E6A42">숲</span><b>숲속의렌더러</b>· 58분 전<span class="ra">추천 <span class="num">11</span> · 답글</span></div><p>네, 대신 정리 함수는 꼭 두세요. 화면을 빠르게 옮길 때 늦게 온 응답이 상태를 덮어쓰지 않아요.</p></div>
+            <div class="node">
+              <div class="reply"><div class="rh"><span class="av sm" style="background:#F2E3D6;color:#8A4B1E">새</span><b>새벽배포</b>· 40분 전<span class="ra">추천 <span class="num">6</span> · 답글</span></div><p>요청이 많으면 쿼리 라이브러리를 쓰는 것도 방법이에요. 같은 요청을 알아서 합쳐 줘요.</p></div>
+              <a class="more" href="#">답글 2개 더 보기</a>
+            </div>
+          </div>
+        </div>
+        <div class="node"><div class="reply"><div class="rh"><span class="av sm" style="background:#E3E8EF;color:#3B4A60">로</span><b>로그찍는곰</b>· 1시간 전<span class="ra">추천 <span class="num">4</span> · 답글</span></div><p>Next.js 앱 라우터라면 서버 컴포넌트에서 불러오면 이 문제 자체가 없어요.</p></div></div>
+      </div>
+    </section>
+  </main>
+  <aside class="side">
+    <div class="box"><h4>질문 정보</h4>
+      <div class="kv">상태<b style="color:var(--ok)">해결됨</b></div>
+      <div class="kv">답변<b class="num">3</b></div>
+      <div class="kv">팔로우<b class="num">18</b></div>
+      <div class="kv">마지막 활동<b>40분 전</b></div>
+    </div>
+    <div class="box rel"><h4>비슷한 질문</h4>
+      <a href="#"><span class="ok num">12</span>StrictMode에서 useEffect 정리 함수가 바로 실행돼요</a>
+      <a href="#"><span class="ok num">8</span>AbortController로 취소한 요청이 콘솔에 에러로 찍혀요</a>
+      <a href="#"><span class="num">3</span>Next.js 앱 라우터에서 데이터 요청은 어디서 하나요?</a>
+      <a href="#"><span class="ok num">21</span>의존성 배열을 비워도 effect가 다시 도는 경우</a>
+    </div>
+    <div class="box"><h4>관련 태그</h4><div class="tags" style="margin-top:0;flex-wrap:wrap"><span class="tag">react</span><span class="tag">hooks</span><span class="tag">fetch</span><span class="tag">abortcontroller</span><span class="tag">nextjs</span></div></div>
+  </aside>
+</div>
+</body>
+</html>

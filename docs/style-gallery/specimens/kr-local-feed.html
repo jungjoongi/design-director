@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>망원동 동네생활 — 우리동네</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root {
+    --bg: #FBF8F4; --surface: #FFFFFF; --sunk: #F4EFE8; --line: #ECE5DC; --line-2: #DDD4C8;
+    --text: #29231E; --text-2: #5A5149; --text-3: #6F655C;
+    --accent: #C9500E; --accent-strong: #B0440A; --accent-tint: #FCEBDD;
+    --ok: #2F7A4F;
+    --sans: "Pretendard Variable", Pretendard, -apple-system, system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html:lang(ko) { word-break: keep-all; overflow-wrap: break-word; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  .num { font-variant-numeric: tabular-nums; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  svg { display: block; flex: none; }
+
+  .top { height: 60px; background: var(--surface); border-bottom: 1px solid var(--line); }
+  .top .in { width: 1232px; margin: 0 auto; height: 100%; display: flex; align-items: center; gap: 20px; }
+  .logo { font-weight: 800; font-size: 20px; letter-spacing: -0.02em; color: var(--accent-strong); width: 196px; }
+  .area { display: flex; align-items: center; gap: 6px; font-weight: 700; font-size: 16px; }
+  .find { margin-left: 24px; flex: 0 0 420px; height: 40px; border-radius: 20px; background: var(--sunk); display: flex; align-items: center; gap: 8px; padding: 0 16px; color: var(--text-3); font-size: 14px; }
+  .tools { margin-left: auto; display: flex; align-items: center; gap: 18px; color: var(--text-2); }
+  .me { width: 34px; height: 34px; border-radius: 50%; background: #E9D9C6; display: grid; place-items: center; font-size: 14px; font-weight: 700; color: #7A5A3A; }
+
+  .wrap { width: 1232px; margin: 0 auto; display: grid; grid-template-columns: 196px 648px 316px; gap: 36px; padding-top: 20px; }
+  .nav { display: flex; flex-direction: column; gap: 2px; position: sticky; top: 20px; align-self: start; }
+  .nav a { display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 12px; border-radius: 12px; font-size: 15px; font-weight: 500; color: var(--text-2); }
+  .nav a.on { background: var(--surface); color: var(--text); font-weight: 700; box-shadow: inset 0 0 0 1px var(--line); }
+  .nav a:hover { background: var(--sunk); }
+  .nav hr { border: 0; border-top: 1px solid var(--line); margin: 10px 12px; }
+
+  .head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 12px; }
+  .head h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.3; }
+  .head p { font-size: 13px; color: var(--text-3); }
+  .chips { display: flex; gap: 8px; margin-bottom: 16px; overflow: hidden; }
+  .chip { height: 32px; padding: 0 14px; border-radius: 16px; background: var(--sunk); font-size: 14px; font-weight: 500; color: var(--text-2); white-space: nowrap; display: flex; align-items: center; }
+  .chip.on { background: var(--text); color: #fff; font-weight: 600; }
+
+  .feed { display: flex; flex-direction: column; gap: 14px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px 6px; }
+  .who { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .av { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font-size: 14px; font-weight: 700; }
+  .who b { font-size: 14px; font-weight: 600; display: block; line-height: 1.35; }
+  .meta { font-size: 13px; color: var(--text-3); display: flex; align-items: center; gap: 4px; }
+  .meta .ok { color: var(--ok); font-weight: 600; display: inline-flex; align-items: center; gap: 2px; }
+  .more { margin-left: auto; color: var(--text-3); }
+  .topic { display: inline-block; font-size: 12px; font-weight: 600; color: var(--text-2); background: var(--sunk); border-radius: 6px; padding: 2px 8px; margin-bottom: 6px; }
+  .card h2 { font-size: 17px; font-weight: 700; line-height: 1.4; letter-spacing: -0.01em; margin-bottom: 4px; }
+  .card p { font-size: 15px; color: var(--text-2); line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .pics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 14px; }
+  .pics .ph { aspect-ratio: 1; border-radius: 12px; overflow: hidden; }
+  .wide { margin-top: 14px; height: 248px; border-radius: 12px; overflow: hidden; }
+  .ph svg, .wide svg { width: 100%; height: 100%; }
+  .react { display: flex; align-items: center; gap: 4px; margin-top: 8px; border-top: 1px solid var(--line); padding-top: 4px; }
+  .react button { display: flex; align-items: center; gap: 6px; height: 40px; padding: 0 10px; border-radius: 10px; font-size: 14px; color: var(--text-2); }
+  .react button:hover { background: var(--sunk); }
+  .react button.on { color: var(--accent-strong); font-weight: 600; }
+  .react .views { margin-left: auto; font-size: 13px; color: var(--text-3); padding-right: 6px; }
+
+  .side { display: flex; flex-direction: column; gap: 14px; }
+  .box { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; }
+  .box h3 { font-size: 15px; font-weight: 700; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: baseline; }
+  .box h3 a { font-size: 13px; font-weight: 500; color: var(--text-3); }
+  .town { display: flex; align-items: center; gap: 12px; }
+  .town .pin { width: 44px; height: 44px; border-radius: 12px; background: var(--accent-tint); display: grid; place-items: center; }
+  .town b { font-size: 17px; display: block; line-height: 1.3; }
+  .town span { font-size: 13px; color: var(--text-3); }
+  .stats { display: flex; gap: 0; margin-top: 14px; border-top: 1px solid var(--line); padding-top: 12px; font-size: 13px; color: var(--text-3); }
+  .stats div { flex: 1; }
+  .stats b { display: block; font-size: 16px; color: var(--text); font-weight: 700; }
+  .hot { list-style: none; display: flex; flex-direction: column; }
+  .hot li { display: flex; align-items: center; justify-content: space-between; height: 36px; font-size: 14px; border-bottom: 1px solid var(--line); }
+  .hot li:last-child { border-bottom: 0; }
+  .hot li span { font-size: 13px; color: var(--text-3); }
+  .meet { display: flex; gap: 12px; align-items: center; padding: 8px 0; }
+  .meet .d { width: 44px; height: 48px; border-radius: 10px; background: var(--sunk); display: grid; place-items: center; text-align: center; font-size: 11px; line-height: 1.2; color: var(--text-3); }
+  .meet .d b { display: block; font-size: 17px; color: var(--text); }
+  .meet strong { font-size: 14px; font-weight: 600; display: block; line-height: 1.4; }
+  .meet span { font-size: 13px; color: var(--text-3); }
+  .fab { position: fixed; right: 48px; bottom: 36px; height: 56px; padding: 0 22px 0 18px; border-radius: 28px; background: var(--accent-strong); color: #fff; font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 8px; box-shadow: 0 6px 16px rgba(120, 50, 10, 0.18); }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<header class="top"><div class="in">
+  <a class="logo" href="#">우리동네</a>
+  <button class="area"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#B0440A" stroke-width="1.8"><path d="M10 18s6-5.2 6-10a6 6 0 0 0-12 0c0 4.8 6 10 6 10z"/><circle cx="10" cy="8" r="2.2"/></svg>망원동<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m3.5 5.5 3.5 3.5 3.5-3.5"/></svg></button>
+  <label class="find"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="8" cy="8" r="5.5"/><path d="m12.2 12.2 3.6 3.6"/></svg>망원동 이웃들의 이야기를 찾아보세요</label>
+  <div class="tools">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 9.5a7 7 0 0 1 14 0v4l1.5 3h-17L4 13.5z"/><path d="M9 19.5a2.2 2.2 0 0 0 4 0"/></svg>
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M3.5 5.5h15v10h-9l-4 3.5v-3.5h-2z"/></svg>
+    <span class="me">솔</span>
+  </div>
+</div></header>
+<div class="wrap">
+  <nav class="nav" aria-label="메뉴">
+    <a href="#"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M3.5 10 11 4l7.5 6v8h-5v-5h-5v5h-5z"/></svg>홈</a>
+    <a class="on" href="#"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="#B0440A" stroke-width="1.8" stroke-linejoin="round"><path d="M3.5 5.5h15v10h-9l-4 3.5v-3.5h-2z"/><path d="M7.5 9.5h7M7.5 12h4" stroke-linecap="round"/></svg>동네생활</a>
+    <a href="#"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="8" cy="8.5" r="3"/><circle cx="15" cy="9.5" r="2.4"/><path d="M2.5 18c.8-3 3-4.5 5.5-4.5s4.7 1.5 5.5 4.5M14 13.6c2.4-.2 4.4 1.2 5 3.9" stroke-linecap="round"/></svg>모임</a>
+    <a href="#"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M4 8.5h14l-1.2 10h-11.6z"/><path d="M8 8.5V7a3 3 0 0 1 6 0v1.5"/></svg>나눔·중고</a>
+    <a href="#"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M4 9.5 5.5 4h11L18 9.5M4.5 9.5v9h13v-9M4 9.5c0 1.4 1.1 2.3 2.4 2.3s2.3-.9 2.3-2.3c0 1.4 1 2.3 2.3 2.3s2.3-.9 2.3-2.3c0 1.4 1 2.3 2.3 2.3S18 10.9 18 9.5"/></svg>동네 가게</a>
+    <hr>
+    <a href="#"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="8" r="3.5"/><path d="M4 19c1-3.6 3.8-5.5 7-5.5s6 1.9 7 5.5" stroke-linecap="round"/></svg>내 정보</a>
+  </nav>
+  <main>
+    <div class="head"><h1>망원동 동네생활</h1><p>최근 1시간 새 글 <span class="num">37</span>개</p></div>
+    <div class="chips"><span class="chip on">전체</span><span class="chip">맛집</span><span class="chip">분실·실종</span><span class="chip">나눔</span><span class="chip">질문</span><span class="chip">일상</span><span class="chip">반려동물</span><span class="chip">동네 소식</span><span class="chip">운동</span></div>
+    <div class="feed">
+      <article class="card">
+        <div class="who"><span class="av" style="background:#F3DCC8;color:#8A4B1E">빵</span><div><b>빵냄새따라</b><div class="meta">망원동 <span class="ok"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m2.5 6.2 2.3 2.3 4.7-5"/></svg>인증</span> · 12분 전</div></div><svg class="more" width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><circle cx="4.5" cy="10" r="1.5"/><circle cx="10" cy="10" r="1.5"/><circle cx="15.5" cy="10" r="1.5"/></svg></div>
+        <span class="topic">맛집</span>
+        <h2>시장 골목 새로 생긴 빵집, 소금빵이 정말 맛있어요</h2>
+        <p>망원시장 2번 입구 쪽 골목에 지난주에 문 열었더라고요. 아침 9시에 나오는 소금빵이 금방 떨어져서 조금 일찍 가시는 걸 추천해요. 사장님도 친절하시고 앉을 자리도 몇 개 있어요.</p>
+        <div class="pics">
+          <div class="ph"><svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice"><rect width="200" height="200" fill="#F2DFC7"/><rect y="130" width="200" height="70" fill="#E6CCAE"/><ellipse cx="100" cy="128" rx="62" ry="30" fill="#C98A4B"/><path d="M52 122q48-34 96 0" fill="none" stroke="#A86B32" stroke-width="5" stroke-linecap="round"/><circle cx="80" cy="112" r="2.5" fill="#FFF7EC"/><circle cx="104" cy="106" r="2.5" fill="#FFF7EC"/><circle cx="124" cy="114" r="2.5" fill="#FFF7EC"/></svg></div>
+          <div class="ph"><svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice"><rect width="200" height="200" fill="#E9E2D6"/><rect x="28" y="40" width="144" height="96" rx="6" fill="#FBF6EE"/><rect x="28" y="40" width="144" height="18" rx="6" fill="#D9C2A3"/><rect x="44" y="72" width="32" height="48" rx="4" fill="#C98A4B"/><rect x="84" y="72" width="32" height="48" rx="4" fill="#E0A96A"/><rect x="124" y="72" width="32" height="48" rx="4" fill="#B97A3E"/><rect y="150" width="200" height="50" fill="#D6CBBB"/></svg></div>
+          <div class="ph"><svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice"><rect width="200" height="200" fill="#DCE6E0"/><rect x="40" y="58" width="120" height="110" rx="4" fill="#F7F3EA"/><path d="M40 58h120l-10-22H50z" fill="#3F7A5E"/><rect x="62" y="96" width="34" height="72" fill="#C9B79C"/><rect x="108" y="96" width="34" height="30" rx="2" fill="#BFD4E0"/><rect y="168" width="200" height="32" fill="#C7C0B3"/></svg></div>
+        </div>
+        <div class="react"><button class="on"><svg width="20" height="20" viewBox="0 0 20 20" fill="#B0440A"><path d="M10 17s-6.5-4-6.5-8.5A3.5 3.5 0 0 1 10 6.3a3.5 3.5 0 0 1 6.5 2.2C16.5 13 10 17 10 17z"/></svg>공감 <span class="num">48</span></button><button><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3.5 4.5h13v9h-8l-3.5 3v-3h-1.5z"/></svg>댓글 <span class="num">23</span></button><span class="views">조회 <span class="num">612</span></span></div>
+      </article>
+      <article class="card">
+        <div class="who"><span class="av" style="background:#DDE7E2;color:#2F6A4E">고</span><div><b>고양이집사3년차</b><div class="meta">합정동 <span class="ok"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m2.5 6.2 2.3 2.3 4.7-5"/></svg>인증</span> · 34분 전</div></div><svg class="more" width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><circle cx="4.5" cy="10" r="1.5"/><circle cx="10" cy="10" r="1.5"/><circle cx="15.5" cy="10" r="1.5"/></svg></div>
+        <span class="topic">분실·실종</span>
+        <h2>망원한강공원 근처에서 치즈색 고양이 보신 분 계세요?</h2>
+        <p>어제 저녁 8시쯤 현관문이 열린 사이에 나갔어요. 오른쪽 귀 끝이 조금 접혀 있고 빨간 목줄을 하고 있어요. 보시면 댓글이나 채팅 부탁드려요.</p>
+        <div class="wide"><svg viewBox="0 0 608 248" preserveAspectRatio="xMidYMid slice"><rect width="608" height="248" fill="#F6E7CF"/><rect y="176" width="608" height="72" fill="#E9D3B2"/><ellipse cx="304" cy="182" rx="96" ry="14" fill="#DDC39E"/><ellipse cx="300" cy="140" rx="70" ry="44" fill="#E7A24E"/><circle cx="364" cy="104" r="34" fill="#E7A24E"/><path d="M342 80l6-24 14 18zM372 74l14-16 4 24z" fill="#E7A24E"/><circle cx="356" cy="102" r="3" fill="#3A2A1C"/><circle cx="376" cy="102" r="3" fill="#3A2A1C"/><path d="M332 128h64" stroke="#C0392B" stroke-width="6" stroke-linecap="round"/><path d="M232 150q-30 10-26 34" fill="none" stroke="#E7A24E" stroke-width="14" stroke-linecap="round"/><path d="M262 118q20-8 40 0M270 140q20-8 40 0" stroke="#D08A3A" stroke-width="5" fill="none" stroke-linecap="round"/></svg></div>
+        <div class="react"><button><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10 17s-6.5-4-6.5-8.5A3.5 3.5 0 0 1 10 6.3a3.5 3.5 0 0 1 6.5 2.2C16.5 13 10 17 10 17z"/></svg>공감 <span class="num">91</span></button><button><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3.5 4.5h13v9h-8l-3.5 3v-3h-1.5z"/></svg>댓글 <span class="num">17</span></button><span class="views">조회 <span class="num">1,408</span></span></div>
+      </article>
+    </div>
+  </main>
+  <aside class="side">
+    <div class="box"><div class="town"><span class="pin"><svg width="22" height="22" viewBox="0 0 20 20" fill="none" stroke="#B0440A" stroke-width="1.8"><path d="M10 18s6-5.2 6-10a6 6 0 0 0-12 0c0 4.8 6 10 6 10z"/><circle cx="10" cy="8" r="2.2"/></svg></span><div><b>망원동</b><span>동네 인증 완료 · 이웃 범위 근처 동네</span></div></div>
+      <div class="stats"><div><b class="num">12,480</b>이웃</div><div><b class="num">326</b>오늘 새 글</div><div><b class="num">18</b>진행 중 모임</div></div></div>
+    <div class="box"><h3>지금 많이 보는 주제 <a href="#">더보기</a></h3><ul class="hot">
+      <li>망원시장 맛집<span>글 <span class="num">42</span></span></li><li>한강공원 산책 메이트<span>글 <span class="num">27</span></span></li><li>겨울옷 나눔<span>글 <span class="num">19</span></span></li><li>동네 병원 추천<span>글 <span class="num">15</span></span></li>
+    </ul></div>
+    <div class="box"><h3>근처 모임 <a href="#">전체 보기</a></h3>
+      <div class="meet"><div class="d">토<b>18</b></div><div><strong>아침 7시 한강 러닝</strong><span>망원나들목 · 9명 참여 중</span></div></div>
+      <div class="meet"><div class="d">일<b>19</b></div><div><strong>동네 책방 독서 모임</strong><span>망원동 · 5명 참여 중</span></div></div>
+    </div>
+  </aside>
+</div>
+<a class="fab" href="#"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M10 4v12M4 10h12"/></svg>글쓰기</a>
+</body>
+</html>

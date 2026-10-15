@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>자유게시판 — 휠하우스 오너 클럽</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root {
+    --bg: #FFFFFF; --page: #F4F5F7; --tint: #F2F5FA; --hover: #F7F8FA;
+    --line: #E3E6EB; --line-2: #C9CED6; --head: #2B3442;
+    --text: #1C2129; --text-2: #4A5261; --text-3: #626B7A; --visited: #6B6F78;
+    --brand: #1E4F9A; --brand-tint: #E8EEF8;
+    --cmt: #BC3A0B; --hot: #C2241F;
+    --sans: "Pretendard Variable", Pretendard, -apple-system, system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html:lang(ko) { word-break: keep-all; overflow-wrap: break-word; }
+  body { font-family: var(--sans); background: var(--page); color: var(--text); font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  button, input, select { font: inherit; color: inherit; }
+  .num { font-variant-numeric: tabular-nums; }
+  :focus-visible { outline: 2px solid var(--brand); outline-offset: 1px; }
+  svg { display: block; flex: none; }
+
+  .top { background: var(--bg); border-bottom: 1px solid var(--line); }
+  .top .in { width: 1240px; margin: 0 auto; height: 56px; display: flex; align-items: center; gap: 28px; }
+  .logo { display: flex; align-items: baseline; gap: 6px; font-weight: 800; font-size: 19px; letter-spacing: -0.02em; color: var(--brand); }
+  .logo small { font-size: 12px; font-weight: 500; color: var(--text-3); letter-spacing: 0; }
+  .menu { display: flex; gap: 2px; font-size: 14px; font-weight: 500; color: var(--text-2); }
+  .menu a { padding: 6px 10px; border-radius: 3px; }
+  .menu a.on { color: var(--brand); font-weight: 700; }
+  .menu a:hover { background: var(--hover); }
+  .search { margin-left: auto; display: flex; align-items: center; height: 34px; border: 1px solid var(--line-2); border-radius: 3px; width: 260px; padding: 0 10px; gap: 8px; background: var(--bg); }
+  .search input { border: 0; outline: 0; flex: 1; font-size: 14px; background: none; }
+  .who { font-size: 13px; color: var(--text-2); display: flex; gap: 12px; align-items: center; }
+  .who b { color: var(--text); font-weight: 600; }
+  .who .lv { font-size: 11px; font-weight: 700; color: var(--brand); background: var(--brand-tint); padding: 1px 4px; border-radius: 2px; }
+
+  .wrap { width: 1240px; margin: 16px auto 0; display: grid; grid-template-columns: 1fr 276px; gap: 20px; align-items: start; }
+  .board { background: var(--bg); border: 1px solid var(--line); }
+  .bhead { display: flex; align-items: baseline; gap: 10px; padding: 14px 16px 10px; }
+  .bhead h1 { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; }
+  .bhead p { font-size: 13px; color: var(--text-3); }
+  .tabs { display: flex; align-items: center; padding: 0 16px; border-bottom: 2px solid var(--head); height: 40px; gap: 2px; }
+  .tabs a { font-size: 14px; padding: 0 10px; height: 40px; display: flex; align-items: center; color: var(--text-2); position: relative; }
+  .tabs a.on { color: var(--text); font-weight: 700; }
+  .tabs a.on::after { content: ""; position: absolute; left: 10px; right: 10px; bottom: -2px; height: 2px; background: var(--brand); }
+  .tabs .sep { width: 1px; height: 12px; background: var(--line-2); margin: 0 6px; }
+  .tabs .tools { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+  .sel { height: 30px; border: 1px solid var(--line-2); border-radius: 3px; padding: 0 8px; font-size: 13px; background: var(--bg); }
+  .write { height: 30px; padding: 0 14px; border: 0; border-radius: 3px; background: var(--brand); color: #fff; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 4px; cursor: pointer; }
+
+  table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+  thead th { height: 34px; font-size: 12px; font-weight: 600; color: var(--text-2); border-bottom: 1px solid var(--line-2); background: var(--bg); }
+  td { height: 38px; border-bottom: 1px solid var(--line); font-size: 13px; color: var(--text-2); text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 6px; }
+  tbody tr:hover td { background: var(--hover); }
+  td.t { text-align: left; padding-left: 10px; font-size: 14px; color: var(--text); }
+  td.t a { display: inline-flex; align-items: center; gap: 5px; max-width: 100%; }
+  td.t .tx { overflow: hidden; text-overflow: ellipsis; }
+  td.t a.read .tx { color: var(--visited); }
+  .c { color: var(--cmt); font-weight: 700; font-size: 12px; }
+  .n { display: inline-grid; place-items: center; width: 14px; height: 14px; border-radius: 2px; background: var(--hot); color: #fff; font-size: 10px; font-weight: 800; line-height: 1; }
+  .img { color: var(--text-3); }
+  .tag { color: var(--text-3); font-size: 12px; }
+  .tag.q { color: var(--brand); font-weight: 600; }
+  td.au { text-align: left; padding-left: 10px; color: var(--text); }
+  .lvb { font-size: 11px; font-weight: 700; color: var(--text-3); margin-left: 3px; }
+  .lvb.hi { color: var(--brand); }
+  td.r { text-align: right; padding-right: 14px; }
+  .up { color: var(--hot); font-weight: 700; }
+  tr.pin td { background: var(--tint); }
+  tr.pin td.no { font-weight: 700; color: var(--brand); font-size: 12px; }
+  tr.pin td.t { font-weight: 600; }
+
+  .side { display: flex; flex-direction: column; gap: 12px; }
+  .box { background: var(--bg); border: 1px solid var(--line); }
+  .box h2 { font-size: 14px; font-weight: 700; padding: 11px 14px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: baseline; }
+  .box h2 span { font-size: 12px; font-weight: 500; color: var(--text-3); }
+  .rank { list-style: none; padding: 4px 0; counter-reset: r; }
+  .rank li { display: flex; gap: 10px; align-items: center; height: 32px; padding: 0 14px; font-size: 13px; }
+  .rank li::before { counter-increment: r; content: counter(r); width: 14px; text-align: right; font-weight: 700; color: var(--text-3); font-size: 12px; font-variant-numeric: tabular-nums; }
+  .rank li:nth-child(-n+3)::before { color: var(--brand); }
+  .rank li .tx { flex: 1; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .blist { list-style: none; padding: 6px 0; columns: 2; column-gap: 0; }
+  .blist li a { display: block; padding: 6px 14px; font-size: 13px; color: var(--text-2); }
+  .blist li a.on { color: var(--brand); font-weight: 700; }
+  .me { padding: 14px; font-size: 13px; color: var(--text-2); display: grid; gap: 6px; }
+  .me b { color: var(--text); font-size: 14px; }
+  .me .row { display: flex; justify-content: space-between; }
+  .bar { height: 4px; background: var(--line); border-radius: 2px; overflow: hidden; }
+  .bar i { display: block; width: 62%; height: 100%; background: var(--brand); }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<header class="top"><div class="in">
+  <a class="logo" href="#">휠하우스 <small>오너 클럽</small></a>
+  <nav class="menu" aria-label="게시판">
+    <a class="on" href="#">자유게시판</a><a href="#">정비·튜닝</a><a href="#">시승기</a><a href="#">사진 갤러리</a><a href="#">중고 장터</a><a href="#">모임·번개</a><a href="#">질문</a>
+  </nav>
+  <label class="search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#626B7A" stroke-width="1.6"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/></svg><input placeholder="전체 게시판 검색" aria-label="전체 게시판 검색"></label>
+  <div class="who"><span><b>오일교환주기</b> <span class="lv">Lv.7</span></span><a href="#">쪽지 2</a><a href="#">알림</a></div>
+</div></header>
+<main class="wrap">
+<section class="board">
+  <div class="bhead"><h1>자유게시판</h1><p>차 얘기, 사는 얘기 모두 좋아요 · 오늘 새 글 <span class="num">214</span></p></div>
+  <div class="tabs">
+    <a class="on" href="#">전체</a><a href="#">베스트</a><span class="sep"></span><a href="#">일상</a><a href="#">질문</a><a href="#">정보</a><a href="#">출고기</a><a href="#">유머</a>
+    <div class="tools"><select class="sel" aria-label="정렬"><option>최신순</option><option>추천순</option><option>댓글순</option></select><select class="sel" aria-label="목록 개수"><option>30개씩</option></select><button class="write"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="#fff" stroke-width="1.6"><path d="M2 12h3l7-7-3-3-7 7z"/></svg>글쓰기</button></div>
+  </div>
+  <table>
+    <colgroup><col style="width:70px"><col style="width:66px"><col><col style="width:132px"><col style="width:62px"><col style="width:62px"><col style="width:54px"></colgroup>
+    <thead><tr><th>번호</th><th>말머리</th><th>제목</th><th>글쓴이</th><th>날짜</th><th>조회</th><th>추천</th></tr></thead>
+    <tbody>
+      <tr class="pin"><td class="no">공지</td><td class="tag">운영</td><td class="t"><a href="#"><span class="tx">자유게시판 이용 규칙 (중고 거래 글은 장터에 올려 주세요)</span><span class="c">[38]</span></a></td><td class="au">운영진</td><td class="num">09.01</td><td class="num">4.8만</td><td class="num">-</td></tr>
+      <tr class="pin"><td class="no">공지</td><td class="tag">모임</td><td class="t"><a href="#"><span class="tx">10월 정기 모임 안내 — 26일(일) 양평 드라이브 코스, 신청은 모임 게시판에서</span><span class="c">[112]</span></a></td><td class="au">운영진</td><td class="num">10.10</td><td class="num">9,874</td><td class="num">-</td></tr>
+      <tr><td class="num">482913</td><td class="tag q">질문</td><td class="t"><a href="#"><span class="tx">겨울 오기 전에 배터리 교체하려는데 AGM으로 가야 하나요?</span><span class="c">[14]</span><span class="n">N</span></a></td><td class="au">세차는주말에<span class="lvb">Lv.3</span></td><td class="num">14:52</td><td class="num">87</td><td class="num">0</td></tr>
+      <tr><td class="num">482912</td><td class="tag">출고기</td><td class="t"><a href="#"><span class="tx">드디어 출고했어요. 8개월 기다린 보람이 있네요</span><svg class="img" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="1.5" y="2.5" width="11" height="9" rx="1"/><circle cx="5" cy="6" r="1.2"/><path d="m2 11 3.5-3 2.5 2 2-1.5 2.5 2"/></svg><span class="c">[52]</span><span class="n">N</span></a></td><td class="au">초보오너<span class="lvb">Lv.2</span></td><td class="num">14:47</td><td class="num">1,204</td><td class="num up">31</td></tr>
+      <tr><td class="num">482911</td><td class="tag">일상</td><td class="t"><a href="#"><span class="tx">출근길 올림픽대로 오늘 유난히 막히네요</span><span class="c">[9]</span><span class="n">N</span></a></td><td class="au">강변북로탈출<span class="lvb">Lv.5</span></td><td class="num">14:41</td><td class="num">143</td><td class="num">1</td></tr>
+      <tr><td class="num">482910</td><td class="tag">정보</td><td class="t"><a href="#" class="read"><span class="tx">타이어 공기압 계절별로 이렇게 맞추고 있어요 (표 정리)</span><svg class="img" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="1.5" y="2.5" width="11" height="9" rx="1"/><circle cx="5" cy="6" r="1.2"/><path d="m2 11 3.5-3 2.5 2 2-1.5 2.5 2"/></svg><span class="c">[27]</span></a></td><td class="au">정비소옆집<span class="lvb hi">Lv.11</span></td><td class="num">14:33</td><td class="num">2,318</td><td class="num up">46</td></tr>
+      <tr><td class="num">482909</td><td class="tag q">질문</td><td class="t"><a href="#"><span class="tx">블랙박스 상시 녹화 켜두면 방전 걱정 없나요?</span><span class="c">[21]</span></a></td><td class="au">밤운전러<span class="lvb">Lv.4</span></td><td class="num">14:20</td><td class="num">412</td><td class="num">2</td></tr>
+      <tr><td class="num">482908</td><td class="tag">유머</td><td class="t"><a href="#" class="read"><span class="tx">주차장에서 제 차 찾는 데 20분 걸렸습니다</span><span class="c">[33]</span></a></td><td class="au">기둥번호외우기<span class="lvb">Lv.6</span></td><td class="num">14:12</td><td class="num">1,876</td><td class="num up">24</td></tr>
+      <tr><td class="num">482907</td><td class="tag">일상</td><td class="t"><a href="#"><span class="tx">주말에 셀프 세차장 다녀왔는데 사람이 정말 많더라고요</span><svg class="img" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="1.5" y="2.5" width="11" height="9" rx="1"/><circle cx="5" cy="6" r="1.2"/><path d="m2 11 3.5-3 2.5 2 2-1.5 2.5 2"/></svg><span class="c">[6]</span></a></td><td class="au">폼건장인<span class="lvb">Lv.4</span></td><td class="num">13:58</td><td class="num">264</td><td class="num">3</td></tr>
+      <tr><td class="num">482906</td><td class="tag">정보</td><td class="t"><a href="#"><span class="tx">자동차세 연납 신청 기간 정리했어요</span><span class="c">[11]</span></a></td><td class="au">세금은미리<span class="lvb hi">Lv.9</span></td><td class="num">13:44</td><td class="num">958</td><td class="num up">18</td></tr>
+      <tr><td class="num">482905</td><td class="tag q">질문</td><td class="t"><a href="#"><span class="tx">엔진오일 5천 km마다 가는 게 맞나요, 만 km가 맞나요</span><span class="c">[64]</span></a></td><td class="au">궁금한사람<span class="lvb">Lv.1</span></td><td class="num">13:31</td><td class="num">3,402</td><td class="num">7</td></tr>
+      <tr><td class="num">482904</td><td class="tag">출고기</td><td class="t"><a href="#" class="read"><span class="tx">아내 차 바꿔줬습니다. 시트 색 고민 많이 했어요</span><svg class="img" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="1.5" y="2.5" width="11" height="9" rx="1"/><circle cx="5" cy="6" r="1.2"/><path d="m2 11 3.5-3 2.5 2 2-1.5 2.5 2"/></svg><span class="c">[19]</span></a></td><td class="au">패밀리카<span class="lvb">Lv.5</span></td><td class="num">13:15</td><td class="num">1,120</td><td class="num up">15</td></tr>
+      <tr><td class="num">482903</td><td class="tag">일상</td><td class="t"><a href="#"><span class="tx">휴게소 호두과자 어디가 제일 맛있나요</span><span class="c">[41]</span></a></td><td class="au">경부선매니아<span class="lvb">Lv.8</span></td><td class="num">13:02</td><td class="num">687</td><td class="num">4</td></tr>
+      <tr><td class="num">482902</td><td class="tag">정보</td><td class="t"><a href="#"><span class="tx">와이퍼 교체 직접 해봤어요. 5분이면 됩니다</span><svg class="img" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="1.5" y="2.5" width="11" height="9" rx="1"/><circle cx="5" cy="6" r="1.2"/><path d="m2 11 3.5-3 2.5 2 2-1.5 2.5 2"/></svg><span class="c">[8]</span></a></td><td class="au">공구함정리<span class="lvb">Lv.6</span></td><td class="num">12:48</td><td class="num">1,531</td><td class="num up">22</td></tr>
+      <tr><td class="num">482901</td><td class="tag q">질문</td><td class="t"><a href="#"><span class="tx">하이브리드 겨울 연비 원래 이렇게 떨어지나요?</span><span class="c">[17]</span></a></td><td class="au">연비계산기<span class="lvb">Lv.3</span></td><td class="num">12:30</td><td class="num">744</td><td class="num">1</td></tr>
+      <tr><td class="num">482900</td><td class="tag">일상</td><td class="t"><a href="#"><span class="tx">10년 탄 차 오늘 폐차하고 왔습니다</span><span class="c">[88]</span></a></td><td class="au">첫차의추억<span class="lvb hi">Lv.10</span></td><td class="num">12:11</td><td class="num">4,961</td><td class="num up">137</td></tr>
+      <tr><td class="num">482899</td><td class="tag">유머</td><td class="t"><a href="#"><span class="tx">내비가 자꾸 논길로 안내해요</span><span class="c">[12]</span></a></td><td class="au">시골길주행<span class="lvb">Lv.4</span></td><td class="num">11:57</td><td class="num">502</td><td class="num">6</td></tr>
+      <tr><td class="num">482898</td><td class="tag">정보</td><td class="t"><a href="#"><span class="tx">고속도로 통행료 할인 시간대, 다시 한번 정리합니다</span><span class="c">[5]</span></a></td><td class="au">하이패스<span class="lvb">Lv.7</span></td><td class="num">11:40</td><td class="num">1,087</td><td class="num up">12</td></tr>
+    </tbody>
+  </table>
+</section>
+<aside class="side">
+  <div class="box me"><div class="row"><b>오일교환주기</b><span>Lv.7 · 다음 레벨까지 <span class="num">380</span>점</span></div><div class="bar"><i></i></div><div class="row"><span>내 글 <span class="num">126</span></span><span>댓글 <span class="num">1,482</span></span><span>받은 추천 <span class="num">903</span></span></div></div>
+  <div class="box"><h2>주간 인기글 <span>추천순</span></h2><ol class="rank">
+    <li><span class="tx">10년 탄 차 오늘 폐차하고 왔습니다</span><span class="c">[88]</span></li>
+    <li><span class="tx">겨울철 스노우 체인 vs 스프레이 직접 비교</span><span class="c">[71]</span></li>
+    <li><span class="tx">처음 사고 났을 때 순서대로 할 일</span><span class="c">[64]</span></li>
+    <li><span class="tx">타이어 공기압 계절별로 이렇게 맞춰요</span><span class="c">[27]</span></li>
+    <li><span class="tx">드디어 출고했어요. 8개월 기다렸어요</span><span class="c">[52]</span></li>
+    <li><span class="tx">주차장에서 제 차 찾는 데 20분</span><span class="c">[33]</span></li>
+    <li><span class="tx">자동차세 연납 신청 기간 정리</span><span class="c">[11]</span></li>
+  </ol></div>
+  <div class="box"><h2>게시판</h2><ul class="blist">
+    <li><a class="on" href="#">자유게시판</a></li><li><a href="#">정비·튜닝</a></li><li><a href="#">시승기</a></li><li><a href="#">사진 갤러리</a></li><li><a href="#">중고 장터</a></li><li><a href="#">모임·번개</a></li><li><a href="#">질문</a></li><li><a href="#">지역 모임</a></li>
+  </ul></div>
+</aside>
+</main>
+</body>
+</html>

@@ -4,6 +4,8 @@
 `${CLAUDE_PLUGIN_ROOT}/references/sections.md` 의 id 만 쓴다. 앱 화면은 설득하는 문서가 아니라 반복해서 쓰는 도구다.
 그래서 기준이 랜딩과 다르다. 첫인상보다 매일 쓰는 속도가, 화려함보다 빈·로딩·오류 상태를 빠짐없이 설계하는 일이 먼저다.
 
+어울리는 스타일: 비전문 운영자가 매일 쓰는 백오피스·설정은 `admin-calm`, 국내 관례(검색 조건 박스·엑셀)의 관리자 화면은 `kr-admin-classic`, 숫자 위주 대시보드는 `data-dense`, 실시간 관제는 `admin-console` (`${CLAUDE_PLUGIN_ROOT}/references/styles/_index.md`).
+
 ## 목차
 1. 하위 유형 (Subtypes)
 2. 섹션 순서와 이유

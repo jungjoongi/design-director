@@ -6,7 +6,7 @@
 ## 목차
 1. 매칭 순서
 2. 여섯 축
-3. 기본 스타일 12종
+3. 기본 스타일 18종
 4. 트리트먼트 5종
 5. 별칭과 스타일이 아닌 말
 6. 토큰 → 스타일 판별 힌트
@@ -38,7 +38,7 @@
 | 둥긂 roundness | 모서리와 형태 | radius 0, 직선 | radius 24px 이상·pill·blob | radius, 아이콘 끝 처리, 서체 형태 |
 | 장식 ornament | 기능 없는 시각 요소의 양 | 타이포와 여백뿐 | 일러스트·패턴·3D·그라데이션 다수 | 일러스트, 배경 효과, 아이콘 처리 |
 
-## 3. 기본 스타일 12종
+## 3. 기본 스타일 18종
 
 대표 레퍼런스는 널리 알려진 정성 연상이고 실측하지 않았다. 수치가 필요하면 ref 로 캡처한다.
 
@@ -59,6 +59,12 @@
 | `dark-tech` | 다크 테크 / Dark Tech | 거의 검정 면, 1px 반투명 경계, 조인 헤드라인, 제품 UI | 밀3 온1 채2 대4 둥2 장2 | 개발자 도구, AI 제품, 생산성 앱 | Linear, Raycast, Supabase | `dark-tech.md` |
 | `kr-fintech-simple` | 토스형 핀테크 심플 / KR Fintech Simple | 한 화면 한 메시지, 큰 숫자, 파랑 하나, 그림자 대신 배경 단계 | 밀2 온3 채2 대4 둥4 장1 | 금융·결제, 신청 흐름, 모바일 웹앱 | 토스, 뱅크샐러드 | `kr-fintech-simple.md` |
 | `kr-editorial-commerce` | 29CM형 에디토리얼 커머스 / KR Editorial Commerce | 사진이 색을 독점, 작은 글자, 흑백 UI, 잡지형 기획전 | 밀2 온3 채1 대4 둥1 장2 | 패션·라이프스타일 커머스, 편집숍 | 29CM, 무신사 매거진 영역 | `kr-editorial-commerce.md` |
+| `admin-calm` | 차분한 어드민 / Calm Admin | 넉넉한 행과 1px 테두리 섹션 카드, 차분한 강조 1색의 백오피스·설정 화면 | 밀3 온3 채2 대3 둥3 장1 | 운영자 콘솔, 설정·결제 관리, 소상공인 관리자, CRM | 예약·쇼핑 SaaS 운영자 화면 계열 | `admin-calm.md` |
+| `admin-console` | 다크 콘솔 / Ops Console | 어두운 회청 바탕, hairline 패널 격자, 큰 tabular 숫자, 상태 3색 | 밀4 온1 채2 대4 둥2 장1 | 실시간 모니터링, 인프라·API 관측, 관제 | 관측·모니터링 도구 계열 | `admin-console.md` |
+| `kr-admin-classic` | 한국형 관리자 / KR Classic Admin | 검색 조건 박스, 엑셀 다운로드·일괄 처리, 전부 그은 그리드 | 밀5 온2 채3 대3 둥1 장1 | 쇼핑몰 회원·주문 관리, 사내 업무, 정산·CS | 국내 쇼핑몰 솔루션 관리자 계열 | `kr-admin-classic.md` |
+| `kr-board-classic` | 한국형 게시판 / KR Classic Board | 번호·말머리·제목[댓글수]·글쓴이·날짜·조회·추천 7열 목록, 장식 없음 | 밀5 온2 채2 대3 둥1 장1 | 텍스트 중심 커뮤니티, 동호회, 사내 게시판 | 국내 대형 커뮤니티 게시판 계열 | `kr-board-classic.md` |
+| `kr-local-feed` | 동네 피드형 / KR Local Feed | 사진 카드에 동네·주제 칩·상대 시간·공감 수, 따뜻한 강조 1색 | 밀3 온4 채3 대3 둥4 장2 | 지역 생활·관심사 커뮤니티, 근황·후기 피드 | 지역 생활 커뮤니티 앱 계열 | `kr-local-feed.md` |
+| `forum-thread` | 스레드형 포럼 / Threaded Forum | 투표 열·태그·채택 답변·들여쓰기 답글 트리 | 밀4 온1 채2 대3 둥2 장1 | 기술 Q&A, 제품 사용자 포럼, 지식 공유 | 개발자 Q&A·오픈소스 포럼 계열 | `forum-thread.md` |
 
 ## 4. 트리트먼트 5종
 
@@ -91,7 +97,10 @@
 | "귀여운", "아기자기", "캐릭터 있는" | 스타일 | `playful-illustrative` |
 | "내추럴", "따뜻한", "감성적인", "웰니스" | 스타일 또는 느낌어 | `organic-soft` 후보 + 축 확인 |
 | "기업 사이트처럼", "신뢰감 있게", "B2B" | 스타일 또는 느낌어 | `corporate-clean` 후보 |
-| "대시보드", "어드민", "엑셀 같은", "게시판" | 스타일 + 화면 유형 | `data-dense` |
+| "대시보드", "엑셀 같은", "데이터 많은" | 스타일 + 화면 유형 | `data-dense` |
+| "어드민", "관리자 페이지", "백오피스" | 스타일 + 화면 유형 | 비전문 운영자용·설정이면 `admin-calm`, 국내 관례(검색 조건·엑셀)면 `kr-admin-classic`, 숫자 위주면 `data-dense` |
+| "관제", "모니터링", "상황판" | 스타일 + 화면 유형 | `admin-console` |
+| "게시판", "커뮤니티 목록" | 스타일 + 화면 유형 | 목록형이면 `kr-board-classic`, 사진 피드면 `kr-local-feed`, Q&A·토론이면 `forum-thread`, 학습·친근함이면 `playful-illustrative` |
 | "글래스", "유리 느낌", "블러" | 트리트먼트 | `glassmorphism` + 기본 스타일 |
 | "뉴모피즘", "소프트 UI" | 트리트먼트 | `neumorphism` |
 | "오로라", "메시 그라데이션", "그라데이션 배경" | 트리트먼트 | `aurora-gradient` |
@@ -113,6 +122,12 @@ summary.md 값으로 후보를 좁힌다. 두 줄 이상 맞으면 유력하고,
 | 3–4px 검정 테두리 + 하드 오프셋 그림자 `4px 4px 0` + 고채도 면 | `neo-brutalism` | playful 은 테두리가 얇고 radius 가 크다 |
 | 세리프 헤드라인 + 본문 18px 이상 + 다단·캡션 + 구분선 | `editorial` | 크림 바탕 + 테라코타 조합이면 CO-2 를 의심 |
 | 본문 13–14px + 행 32–40px + tabular 숫자 + 그림자 없음 + 빈 칸 30% 미만 | `data-dense` | corporate-clean 은 행이 여유롭고 카드를 쓴다 |
+| 본문 14–15px + 행 48–56px + 1px 테두리 섹션 카드 radius 8–12 + 그림자 없음 + 강조 1색 5% 미만 | `admin-calm` | data-dense 보다 행이 높고, corporate-clean 과 달리 사진·그림자가 없다 |
+| 다크 bg 명도 8–14% + 경계 알파 6–12% + 숫자 24–36px tabular + 상태 3색 + 큰 헤드라인 없음 | `admin-console` | dark-tech 는 display 헤드라인과 여백이 있다 |
+| 본문 13px + radius 0–3 + 가로·세로 모두 그은 셀 + 회색 라벨 셀·헤더 행 + 상단 짙은 바 | `kr-admin-classic` | data-dense 는 행 구분선 하나와 칩 필터를 쓴다 |
+| 본문 13–14px + 행 36–44px + 1px 행 구분선 + 제목 옆 `[N]` 댓글 수 + 공지 tint 행, 제목 열이 50% 이상 | `kr-board-classic` | data-dense 는 숫자 열이 많다 |
+| 따뜻한 중립 bg + 강조 1색 + radius 12–20 + pill 칩 + 사진 카드 + 그림자는 FAB 만 | `kr-local-feed` | playful 은 일러스트·탄성 모션이 있다 |
+| 회청 중립 + 파랑 1·초록 1(채택) + 왼쪽 투표 열 + 1px 들여쓰기 선 + 모노는 코드에만 | `forum-thread` | kr-board-classic 은 7열 목록이고 트리가 없다 |
 | 가는 세리프 display + 넓은 자간 라틴 대문자 + 섹션 120–240px + 풀블리드 사진 | `luxury` | minimal 은 사진·세리프 비중이 낮다 |
 | 따뜻한 중립(hue 50–90) + 낮은 채도 + radius 16–32 + 넓고 옅은 그림자 + 자연 사진 | `organic-soft` | 크림 + 세리프 + 테라코타가 그대로면 CO-2 |
 | radius 12–32 + 고유 일러스트·캐릭터 + 밝은 다색 + 탄성 easing | `playful-illustrative` | 3D 렌더가 주인공이면 clay-3d 트리트먼트 |
