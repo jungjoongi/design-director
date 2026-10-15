@@ -1,0 +1,9 @@
+{
+  "name": "moanote-landing",
+  "version": "0.0.0",
+  "private": true,
+  "description": "모아노트 — 회의 녹음을 요약해 주는 팀 도구(5–20명 팀 리더 대상 SaaS)의 마케팅 랜딩 페이지",
+  "scripts": {
+    "dev": "python3 -m http.server 4173"
+  }
+}

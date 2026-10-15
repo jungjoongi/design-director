@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>모아노트 커뮤니티 - 자유게시판</title>
+  <meta name="description" content="모아노트 사용자들이 회의록 팁과 질문을 나누는 커뮤니티입니다.">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="index.html">모아노트 커뮤니티</a>
+      <input class="search" type="search" placeholder="커뮤니티 검색" aria-label="커뮤니티 검색">
+      <a class="btn btn-primary" href="#">새 글 쓰기</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="feed-head">
+      <h1>자유게시판</h1>
+      <p class="feed-sub">모아노트 사용자들이 회의록 팁과 질문을 나누는 공간이에요.</p>
+      <div class="chips" role="tablist">
+        <button class="chip is-active" role="tab" aria-selected="true">추천</button>
+        <button class="chip" role="tab" aria-selected="false">최신</button>
+        <button class="chip" role="tab" aria-selected="false">인기</button>
+      </div>
+    </div>
+
+    <article class="notice-card">
+      <strong>공지</strong>
+      <a href="post.html">커뮤니티 이용 규칙이 바뀌었어요 (10월 개정)</a>
+    </article>
+
+    <div class="card-grid">
+      <article class="post-card">
+        <div class="author"><span class="avatar">회</span><div><strong>회의요정</strong><span>3시간 전</span></div></div>
+        <h2><a href="post.html">주간 회의 요약 템플릿 공유해요</a></h2>
+        <p>매주 월요일 회의를 모아노트로 녹음하고, 요약 결과를 이 템플릿에 붙여 넣으면 팀 공유가 훨씬 편해요.</p>
+        <div class="meta"><span>좋아요 24</span><span>댓글 12</span><span class="views" hidden>조회 1,204</span></div>
+      </article>
+      <article class="post-card">
+        <div class="author"><span class="avatar">스</span><div><strong>스프린트장인</strong><span>5시간 전</span></div></div>
+        <h2><a href="post.html">녹음 파일 업로드가 30분에서 멈춰요</a></h2>
+        <p>m4a 파일 1시간짜리를 올리는데 진행률이 30분 지점에서 더 안 올라가요. 비슷한 분 계신가요?</p>
+        <div class="meta"><span>좋아요 3</span><span>댓글 8</span><span class="views" hidden>조회 412</span></div>
+      </article>
+      <article class="post-card">
+        <div class="author"><span class="avatar">기</span><div><strong>기획하는곰</strong><span>어제</span></div></div>
+        <h2><a href="post.html">할 일 추출 정확도 올리는 말하기 습관</a></h2>
+        <p>회의 끝에 담당자 이름과 마감일을 한 문장으로 다시 말해 주면 할 일이 거의 다 잡혀요.</p>
+        <div class="meta"><span>좋아요 57</span><span>댓글 21</span><span class="views" hidden>조회 3,310</span></div>
+      </article>
+      <article class="post-card">
+        <div class="author"><span class="avatar">신</span><div><strong>신입PM</strong><span>어제</span></div></div>
+        <h2><a href="post.html">팀 플랜 결제하면 기존 요약도 옮겨지나요?</a></h2>
+        <p>개인 체험으로 쓰던 요약 10개 정도가 있는데 팀 워크스페이스로 옮길 수 있는지 궁금해요.</p>
+        <div class="meta"><span>좋아요 1</span><span>댓글 4</span><span class="views" hidden>조회 198</span></div>
+      </article>
+      <article class="post-card">
+        <div class="author"><span class="avatar">데</span><div><strong>데일리스탠드업</strong><span>2일 전</span></div></div>
+        <h2><a href="post.html">스탠드업 15분 회의는 요약보다 원문이 낫더라고요</a></h2>
+        <p>짧은 회의는 요약이 너무 줄어들어서 원문 보기 모드로 공유하고 있어요. 다른 분들은 어떻게 쓰세요?</p>
+        <div class="meta"><span>좋아요 9</span><span>댓글 15</span><span class="views" hidden>조회 876</span></div>
+      </article>
+      <article class="post-card">
+        <div class="author"><span class="avatar">원</span><div><strong>원격근무러</strong><span>3일 전</span></div></div>
+        <h2><a href="post.html">화상회의 녹음 음질 설정 공유</a></h2>
+        <p>노트북 마이크 대신 회의실 스피커폰으로 녹음하니 화자 구분이 확실히 좋아졌어요.</p>
+        <div class="meta"><span>좋아요 18</span><span>댓글 6</span><span class="views" hidden>조회 1,045</span></div>
+      </article>
+    </div>
+
+    <div class="infinite-loader" aria-live="polite">
+      <span class="spinner" aria-hidden="true"></span>
+      <span>스크롤하면 글을 더 불러와요…</span>
+    </div>
+  </main>
+</body>
+</html>

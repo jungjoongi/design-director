@@ -1,0 +1,9 @@
+{
+  "name": "moanote-community",
+  "version": "0.0.0",
+  "private": true,
+  "description": "모아노트(회의 녹음을 요약해 주는 팀 도구) 사용자 커뮤니티 — 회의록 팁과 질문을 나누는 게시판 목록·글 상세 화면",
+  "scripts": {
+    "dev": "python3 -m http.server 4173"
+  }
+}
