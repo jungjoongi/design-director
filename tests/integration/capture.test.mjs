@@ -260,3 +260,18 @@ test('미디어 위 흰 글씨는 측정하고, 미디어 없는 흰 바탕 흰 
   const all = ['tokens.json', 'summary.md', join('raw', 'desktop.json')].map((f) => readFileSync(join(cwd, 'media-hero', f), 'utf8')).join('\n');
   assert.ok(!all.includes('MEDIA PROBE'), '흰 바탕 흰 글씨 탐침이 출력에 남았다');
 });
+
+test('변수 참조·lang·오버레이 이름에 숨긴 문구도 새지 않는다', { skip: SKIP, timeout: 90000 }, async () => {
+  const r = await dd(['capture', `${server.url}/probe2.html`, '--out', 'probe2', '--viewports', 'desktop', '--no-full-page']);
+  assert.equal(r.code, 0, r.stdout);
+  for (const f of ['capture.json', 'tokens.json', 'summary.md', join('raw', 'desktop.json')]) {
+    const text = readFileSync(join(cwd, 'probe2', f), 'utf8');
+    assert.doesNotMatch(text, /IGNORE[-_ ]ALL[-_ ]PREVIOUS/i, `${f}: 숨은 문구가 새어 나왔다`);
+  }
+  const raw = readJSON(cwd, 'probe2', 'raw', 'desktop.json');
+  const ok = (raw.vars?.items || []).find((x) => x.n === '--probe-ok');
+  // 브라우저는 계산값에서 var() 를 풀어 준다. 정상 값은 남고, 지시문이 든 참조는 무효값이 되어 비거나 버려진다
+  if (ok) assert.equal(ok.v, 'calc(8px * 2)');
+  const cap = readJSON(cwd, 'probe2', 'capture.json');
+  assert.ok(cap.overlaysHidden.some((o) => o.kind === 'consent' && o.hint === 'div'), JSON.stringify(cap.overlaysHidden));
+});

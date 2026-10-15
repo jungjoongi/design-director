@@ -462,9 +462,13 @@
     // 앞부분만 보고 타입을 정하면 `rgb( 아무 문장 )` 같은 값이 색으로 통과한다. 값 전체가 숫자·단위·색 함수·
     // 허용 낱말로만 이뤄졌을 때만 원문을 내보내고, 색은 원문 대신 hex 로 바꿔 내보낸다.
     var SAFE_WORDS = /^(px|rem|em|vh|vw|ch|dvh|svh|lvh|vmin|vmax|ex|deg|turn|rad|ms|s|calc|clamp|min|max|var|rgb|rgba|hsl|hsla|oklch|oklab|lab|lch|color|hwb|srgb|display-p3|from|none|inset|transparent|currentcolor|cubic-bezier|ease|ease-in|ease-out|ease-in-out|linear|steps|start|end|jump-start|jump-end|jump-none|jump-both)$/i;
+    // var(--이름) 참조는 이름도 사이트가 정한 글자라서 var(--ref) 로 바꾼 뒤 검사·출력한다. 그 밖의 -- 는 받지 않는다.
+    var maskRefs = function (v) { return v.replace(/var\(\s*--[\w-]+\s*\)/g, 'var(--ref)'); };
     var onlySafeWords = function (v) {
+      v = maskRefs(v);
       if (!/^[\w\s#().,%+*\/-]+$/.test(v)) return false;
-      var words = v.replace(/--[\w-]+/g, ' ').match(/[a-z][a-z0-9-]*/gi) || [];
+      if (/--(?!ref\))/.test(v)) return false;
+      var words = v.replace(/--ref/g, ' ').match(/[a-z][a-z0-9-]*/gi) || [];
       return words.every(function (w) { return SAFE_WORDS.test(w) || NAMED.test(w); });
     };
     var collected = {};
@@ -489,7 +493,7 @@
       var keep = '';
       if (t === 'font') keep = safeFamily(v);
       else if (t === 'color' && onlySafeWords(v)) { var pc = parseColor(v); keep = pc ? hex(pc) : ''; if (!keep) t = 'other'; }
-      else if (t !== 'other' && onlySafeWords(v)) keep = clean(v, 80);
+      else if (t !== 'other' && onlySafeWords(v)) keep = clean(maskRefs(v), 80);
       else t = 'other';
       return { n: clean(nm.replace(/[^\w-]/g, ''), 48), v: keep, t: t };
     }).filter(function (x) { return x.n; });
@@ -1202,7 +1206,7 @@
     schema: 'dd.raw/1',
     meta: {
       viewport: opts.viewport || null, w: VW, h: VH, dpr: window.devicePixelRatio || 1, docW: DOC_W, docH: DOC_H,
-      title: clean(document.title, 80), lang: clean(String(document.documentElement.lang || '').replace(/[^\w-]/g, ''), 16),
+      title: clean(document.title, 80), lang: /^[a-z]{2,3}(-[a-z0-9]{2,8}){0,3}$/i.test(String(document.documentElement.lang || '')) ? String(document.documentElement.lang) : '',
       ms: bodyMs, elements: all.length, measured: sample.length, sampled: sampled, budgetHit: budgetHit, trimmed: [], warnings: warnings,
     },
     text: {

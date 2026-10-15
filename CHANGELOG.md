@@ -3,6 +3,12 @@
 이 프로젝트는 [Semantic Versioning](https://semver.org/lang/ko/) 을 따른다.
 버전은 `plugins/design-director/.claude-plugin/plugin.json` 과 `.claude-plugin/marketplace.json` 에 함께 적는다.
 
+## 0.1.2 — 2026-10-15
+
+- 보안: CSS 변수 값 검사에서 `calc(--…)`·`var(--…)` 로 낱말 검사를 피하던 우회를 막는다(`var(--이름)` 은 `var(--ref)` 로 가린다).
+- 보안: `<html lang>` 은 BCP 47 꼴일 때만 내보낸다. 숨긴 오버레이 힌트는 태그 이름만 남긴다(id·class 제외).
+- 보안: `untrusted[]` 에 사이트가 정하는 문자열을 모두 적는다(최종 URL·lang·폰트 이름·CSS 변수 이름과 값·색 역할의 변수 이름).
+
 ## 0.1.1 — 2026-10-15
 
 - 보안: 사이트가 정하는 폰트 이름을 정화하고 32자로 자른다. CSS 변수 값은 앞부분이 아니라 값 전체를 검사하고, 색은 hex 로만

@@ -100,7 +100,7 @@ export function analyze({ desktop, mobile = null, capture = null }, { fontData =
       mobileChanges: structure.mobileChanges,
     },
     health: { overflowX: mobile ? { desktop: overflow(desktop), mobile: overflow(mobile) } : { desktop: overflow(desktop) }, src: 'measured' },
-    untrusted: ['source.title', 'structure.sections[].heading.text', 'components.button[].label', 'typography.families[].primary', 'typography.families[].stack', 'vars.items[].name'],
+    untrusted: ['source.title', 'source.finalUrl', 'source.lang', 'structure.sections[].heading.text', 'components.button[].label', 'typography.families[].primary', 'typography.families[].stack', 'color.roles.*.var', 'vars.items[].name', 'vars.items[].value'],
     warnings,
   };
   if (desktop.overflow && desktop.overflow.offenders) tokens.health.offenders = { desktop: desktop.overflow.offenders, mobile: mobile && mobile.overflow ? mobile.overflow.offenders || [] : [] };

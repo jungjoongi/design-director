@@ -23,7 +23,10 @@ test('tokens: 최상위 형식(dd.tokens/1)', () => {
   assert.deepEqual(tokens.source.viewports, ['desktop-1440x900', 'mobile-390x844']);
   assert.equal(tokens.source.capturedAt, '2026-10-15T00:00:00Z');
   assert.ok(['high', 'medium', 'low'].includes(tokens.confidence.overall));
-  assert.deepEqual(tokens.untrusted.slice(0, 3), ['source.title', 'structure.sections[].heading.text', 'components.button[].label']);
+  // 사이트가 정하는 문자열은 모두 untrusted 에 있어야 한다
+  for (const k of ['source.title', 'source.finalUrl', 'source.lang', 'structure.sections[].heading.text', 'components.button[].label', 'typography.families[].primary', 'typography.families[].stack', 'color.roles.*.var', 'vars.items[].name', 'vars.items[].value']) {
+    assert.ok(tokens.untrusted.includes(k), k);
+  }
 });
 
 test('tokens: 픽스처의 알려진 타이포 값', () => {

@@ -16,12 +16,9 @@
     s = s.replace(INVISIBLE, '').replace(CONTROL, ' ').replace(/\s+/g, ' ').trim();
     return s.length > n ? s.slice(0, n - 1) + '…' : s;
   };
+  // 힌트는 태그 이름만 남긴다. id·class 는 사이트가 정한 글자라서 지시문을 실을 수 있다.
   var hintOf = function (el) {
-    var h = el.tagName.toLowerCase();
-    if (el.id) h += '#' + String(el.id).replace(/[^\w-]/g, '');
-    var cls = typeof el.className === 'string' ? el.className.trim().split(/\s+/)[0] : '';
-    if (cls) h += '.' + cls.replace(/[^\w-]/g, '');
-    return h.slice(0, 60);
+    return String(el.tagName || '').toLowerCase().replace(/[^a-z0-9-]/g, '').slice(0, 20);
   };
   var attrText = function (el) {
     var c = typeof el.className === 'string' ? el.className : (el.getAttribute && el.getAttribute('class')) || '';
