@@ -1,0 +1,6 @@
+{
+  "_comment": "숨길 오버레이 판별 정규식(대소문자 무시). 떠 있는(fixed·sticky·z-index ≥ 1000) 요소의 id·class·aria-label·iframe src 에만 적용한다. consentText 는 화면 위·아래 띠에 붙은 fixed 요소의 글에 페이지 안에서만 적용하고 결과는 boolean 이다.",
+  "consent": "cookie|consent|onetrust|didomi|usercentrics|cookiebot|truste|osano|qc-cmp|sp_message|iubenda|termly|klaro|cmpbox|cmpwrapper|cmp-container|(^|\\s)cmp(\\s|$)|gdpr",
+  "consentText": "cookie|consent|gdpr|쿠키|개인정보|동의",
+  "chat": "intercom|crisp|ch-plugin|channel-?io|channeltalk|ch-messenger|zendesk|zEWidget|drift|hubspot-messages|tawk|kakao-?(chat|channel|talk)|plusfriend|launcher-frame"
+}

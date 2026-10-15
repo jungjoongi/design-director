@@ -1,0 +1,58 @@
+{
+  "schema": "dd.capture/1",
+  "url": "http://127.0.0.1:4321/",
+  "finalUrl": "http://127.0.0.1:4321/",
+  "capturedAt": "2026-10-15T00:00:00Z",
+  "generator": "design-director@0.1.0",
+  "browser": {
+    "kind": "chrome",
+    "version": "test"
+  },
+  "viewports": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 900,
+      "dpr": 1
+    },
+    {
+      "name": "mobile",
+      "width": 390,
+      "height": 844,
+      "dpr": 2
+    }
+  ],
+  "files": {
+    "slices": [
+      "slices/desktop-01.jpg",
+      "slices/desktop-02.jpg",
+      "slices/desktop-03.jpg",
+      "slices/desktop-04.jpg",
+      "slices/desktop-05.jpg",
+      "slices/desktop-06.jpg"
+    ],
+    "raw": {
+      "desktop": "raw/desktop.json",
+      "mobile": "raw/mobile.json"
+    },
+    "desktop": "desktop.png",
+    "mobile": "mobile.png",
+    "overview": "overview.jpg",
+    "tokens": "tokens.json",
+    "summary": "summary.md"
+  },
+  "overlaysHidden": [
+    {
+      "viewport": "desktop",
+      "kind": "consent",
+      "hint": "div#cookie-banner.cookie-banner"
+    },
+    {
+      "viewport": "mobile",
+      "kind": "consent",
+      "hint": "div#cookie-banner.cookie-banner"
+    }
+  ],
+  "partial": false,
+  "warnings": []
+}
